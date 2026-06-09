@@ -355,6 +355,69 @@ async def vehicles_by_ids(body: dict):
     return {"items": items}
 
 
+# -------- Public Dealer Profiles & Reviews --------
+async def _dealer_rating(dealer_id: str) -> dict:
+    pipeline = [
+        {"$match": {"dealer_id": dealer_id, "approved": True}},
+        {"$group": {"_id": None, "avg": {"$avg": "$rating"}, "count": {"$sum": 1}}},
+    ]
+    res = await db.reviews.aggregate(pipeline).to_list(length=1)
+    if not res:
+        return {"avg": 0.0, "count": 0}
+    return {"avg": round(res[0]["avg"], 1), "count": res[0]["count"]}
+
+@api.get("/dealers/{dealer_id}")
+async def public_dealer(dealer_id: str):
+    d = await db.users.find_one({"id": dealer_id, "role": "dealer", "status": "approved"}, {"_id": 0, "password_hash": 0})
+    if not d:
+        raise HTTPException(status_code=404, detail="Händler nicht gefunden")
+    vehicle_count = await db.vehicles.count_documents({"dealer_id": dealer_id, "status": "published"})
+    rating = await _dealer_rating(dealer_id)
+    return {
+        "id": d["id"],
+        "name": d.get("name"),
+        "company": d.get("company"),
+        "phone": d.get("phone"),
+        "created_at": d.get("created_at"),
+        "vehicle_count": vehicle_count,
+        "rating_avg": rating["avg"],
+        "rating_count": rating["count"],
+    }
+
+@api.get("/dealers/{dealer_id}/vehicles")
+async def public_dealer_vehicles(dealer_id: str):
+    cursor = db.vehicles.find({"dealer_id": dealer_id, "status": "published"}, {"_id": 0}).sort("created_at", -1)
+    return {"items": await cursor.to_list(length=200)}
+
+@api.get("/dealers/{dealer_id}/reviews")
+async def public_dealer_reviews(dealer_id: str):
+    cursor = db.reviews.find({"dealer_id": dealer_id, "approved": True}, {"_id": 0}).sort("created_at", -1)
+    return {"items": await cursor.to_list(length=200)}
+
+class ReviewIn(BaseModel):
+    rating: int = Field(ge=1, le=5)
+    name: str = Field(min_length=2, max_length=80)
+    comment: str = Field(min_length=10, max_length=2000)
+
+@api.post("/dealers/{dealer_id}/reviews")
+async def post_dealer_review(dealer_id: str, payload: ReviewIn):
+    d = await db.users.find_one({"id": dealer_id, "role": "dealer"})
+    if not d:
+        raise HTTPException(status_code=404, detail="Händler nicht gefunden")
+    doc = {
+        "id": str(uuid.uuid4()),
+        "dealer_id": dealer_id,
+        "rating": payload.rating,
+        "name": payload.name.strip(),
+        "comment": payload.comment.strip(),
+        "approved": True,  # auto-approve for MVP
+        "created_at": now_iso(),
+    }
+    await db.reviews.insert_one(doc)
+    doc.pop("_id", None)
+    return doc
+
+
 # -------- Dealer Vehicle CRUD --------
 @api.get("/dealer/vehicles")
 async def dealer_list(user: dict = Depends(require_dealer)):
@@ -665,6 +728,7 @@ async def startup():
     await db.inquiries.create_index("dealer_id")
     await db.inquiries.create_index("vehicle_id")
     await db.files.create_index("storage_path")
+    await db.reviews.create_index("dealer_id")
     await seed_admin()
     try:
         init_storage()

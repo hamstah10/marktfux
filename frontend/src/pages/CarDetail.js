@@ -108,12 +108,17 @@ export default function CarDetail() {
             </div>
 
             {v.dealer && (
-              <div className="swiss-card p-6 mt-3">
-                <div className="swiss-label text-gray-500">Händler</div>
-                <div className="font-semibold text-base mt-2 flex items-center gap-2"><Building2 className="w-4 h-4 text-[#E63946]" /> {v.dealer.company || v.dealer.name}</div>
-                {v.dealer.phone && <div className="text-sm text-gray-600 mt-1 flex items-center gap-2"><Phone className="w-4 h-4" /> {v.dealer.phone}</div>}
-                <div className="text-sm text-gray-500 mt-1">{v.location}</div>
-              </div>
+              <Link to={`/haendler/${v.dealer.id}`} data-testid="vehicle-dealer-link" className="swiss-card p-6 mt-3 block hover:border-[#E63946] transition-colors group">
+                <div className="flex items-start justify-between gap-3">
+                  <div className="min-w-0">
+                    <div className="swiss-label text-gray-500">Händler</div>
+                    <div className="font-semibold text-base mt-2 flex items-center gap-2"><Building2 className="w-4 h-4 text-[#E63946]" /> {v.dealer.company || v.dealer.name}</div>
+                    {v.dealer.phone && <div className="text-sm text-gray-600 mt-1 flex items-center gap-2"><Phone className="w-4 h-4" /> {v.dealer.phone}</div>}
+                    <div className="text-sm text-gray-500 mt-1">{v.location}</div>
+                  </div>
+                  <span className="swiss-label text-gray-400 group-hover:text-[#E63946] transition-colors">Profil →</span>
+                </div>
+              </Link>
             )}
 
             <div className="swiss-card p-6 mt-3">

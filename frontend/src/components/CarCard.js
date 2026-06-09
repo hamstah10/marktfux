@@ -2,7 +2,9 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { imgUrl } from "@/lib/api";
 import { useFavorites } from "@/hooks/useFavorites";
-import { Gauge, Calendar, Fuel, MapPin, Heart } from "lucide-react";
+import { useCompare } from "@/hooks/useCompare";
+import { toast } from "sonner";
+import { Gauge, Calendar, Fuel, MapPin, Heart, GitCompareArrows } from "lucide-react";
 import ImagePlaceholder from "./ImagePlaceholder";
 
 const fmtPrice = (n) => new Intl.NumberFormat("de-DE", { style: "currency", currency: "EUR", maximumFractionDigits: 0 }).format(n || 0);
@@ -10,13 +12,18 @@ const fmtKm = (n) => new Intl.NumberFormat("de-DE").format(n || 0) + " km";
 
 export default function CarCard({ v }) {
   const img = v.images?.[0];
-  const { isFav, toggle } = useFavorites();
+  const { isFav, toggle: toggleFav } = useFavorites();
+  const { isInCompare, toggle: toggleCmp } = useCompare();
   const fav = isFav(v.id);
+  const inCmp = isInCompare(v.id);
 
-  const onFav = (e) => {
-    e.preventDefault();
-    e.stopPropagation();
-    toggle(v.id);
+  const stop = (e) => { e.preventDefault(); e.stopPropagation(); };
+  const onFav = (e) => { stop(e); toggleFav(v.id); };
+  const onCmp = (e) => {
+    stop(e);
+    const res = toggleCmp(v.id);
+    if (res.full) toast.error("Maximal 3 Fahrzeuge im Vergleich.");
+    else if (res.added) toast.success("Zum Vergleich hinzugefügt.");
   };
 
   return (
@@ -32,14 +39,26 @@ export default function CarCard({ v }) {
           <ImagePlaceholder />
         )}
         <div className="absolute top-3 left-3 bg-white px-3 py-1 swiss-label">{v.brand}</div>
-        <button
-          onClick={onFav}
-          data-testid={`fav-btn-${v.id}`}
-          aria-label={fav ? "Aus Merkliste entfernen" : "Zur Merkliste hinzufügen"}
-          className={`absolute top-3 right-3 w-9 h-9 inline-flex items-center justify-center transition-all ${fav ? "bg-[#E63946] text-white" : "bg-white/95 text-gray-700 hover:bg-white"}`}
-        >
-          <Heart className="w-4 h-4" fill={fav ? "currentColor" : "none"} />
-        </button>
+        <div className="absolute top-3 right-3 flex flex-col gap-2">
+          <button
+            onClick={onFav}
+            data-testid={`fav-btn-${v.id}`}
+            aria-label={fav ? "Aus Merkliste entfernen" : "Merken"}
+            title={fav ? "Aus Merkliste entfernen" : "Merken"}
+            className={`w-9 h-9 inline-flex items-center justify-center transition-all ${fav ? "bg-[#E63946] text-white" : "bg-white/95 text-gray-700 hover:bg-white"}`}
+          >
+            <Heart className="w-4 h-4" fill={fav ? "currentColor" : "none"} />
+          </button>
+          <button
+            onClick={onCmp}
+            data-testid={`compare-btn-${v.id}`}
+            aria-label={inCmp ? "Aus Vergleich entfernen" : "Zum Vergleich"}
+            title={inCmp ? "Aus Vergleich entfernen" : "Zum Vergleich"}
+            className={`w-9 h-9 inline-flex items-center justify-center transition-all ${inCmp ? "bg-[#0A0A0A] text-white" : "bg-white/95 text-gray-700 hover:bg-white"}`}
+          >
+            <GitCompareArrows className="w-4 h-4" />
+          </button>
+        </div>
       </div>
       <div className="p-5">
         <h3 className="font-display font-bold text-lg leading-tight line-clamp-1">{v.title}</h3>
