@@ -13,7 +13,7 @@ export default function Header() {
   const onLogout = () => { logout(); nav("/"); };
 
   return (
-    <header className="sticky top-0 z-40 bg-white border-b border-gray-200">
+    <header className="bg-white border-b border-gray-200">
       <div className="container-x flex items-center justify-between h-16">
         <Link to="/" data-testid="logo-link" className="flex items-center gap-2 font-display font-extrabold text-xl tracking-tight">
           <Car className="w-6 h-6 text-[#E63946]" />

@@ -101,7 +101,7 @@ export default function CarDetail() {
 
         {/* Right — sticky sidebar */}
         <aside>
-          <div className="sticky top-24">
+          <div className="md:sticky md:top-6">
             <div className="swiss-card p-6">
               <div className="text-4xl font-display font-extrabold">{fmtPrice(v.price)}</div>
               <p className="text-xs text-gray-500 mt-1">inkl. MwSt. ausweisbar (sofern zutreffend)</p>
