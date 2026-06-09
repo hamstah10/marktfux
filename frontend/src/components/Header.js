@@ -1,10 +1,12 @@
 import React from "react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import { useAuth } from "@/context/AuthContext";
-import { Car, LogIn, LayoutDashboard, ShieldCheck, LogOut, UserPlus } from "lucide-react";
+import { useFavorites } from "@/hooks/useFavorites";
+import { Car, LogIn, LayoutDashboard, ShieldCheck, LogOut, UserPlus, Heart } from "lucide-react";
 
 export default function Header() {
   const { user, logout } = useAuth();
+  const { count } = useFavorites();
   const nav = useNavigate();
   const onLogout = () => {
     logout();
@@ -21,6 +23,13 @@ export default function Header() {
         <nav className="flex items-center gap-1 md:gap-4">
           <NavLink to="/fahrzeuge" data-testid="nav-marketplace" className={({isActive}) => `swiss-label px-3 py-2 ${isActive ? "text-[#E63946]" : "text-gray-700 hover:text-[#0A0A0A]"}`}>
             Fahrzeuge
+          </NavLink>
+          <NavLink to="/favoriten" data-testid="nav-favorites" className={({isActive}) => `relative inline-flex items-center gap-1.5 px-3 py-2 text-sm font-semibold ${isActive ? "text-[#E63946]" : "text-gray-700 hover:text-[#0A0A0A]"}`} title="Merkliste">
+            <Heart className="w-4 h-4" fill={count > 0 ? "currentColor" : "none"} />
+            <span className="hidden md:inline">Merkliste</span>
+            {count > 0 && (
+              <span data-testid="favorites-count" className="absolute -top-0 -right-0 md:static md:ml-1 min-w-[18px] h-[18px] px-1 text-[10px] font-bold bg-[#E63946] text-white inline-flex items-center justify-center">{count}</span>
+            )}
           </NavLink>
           {!user && (
             <>

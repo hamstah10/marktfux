@@ -334,13 +334,25 @@ async def facets():
 async def get_vehicle(vehicle_id: str):
     v = await db.vehicles.find_one({"id": vehicle_id}, {"_id": 0})
     if not v or v.get('status') != 'published':
-        # Allow dealer/admin to fetch their own/any
         raise HTTPException(status_code=404, detail="Fahrzeug nicht gefunden")
-    # attach dealer info (public minimal)
+    # increment views (fire-and-forget, ignore failures)
+    try:
+        await db.vehicles.update_one({"id": vehicle_id}, {"$inc": {"views": 1}})
+        v['views'] = (v.get('views') or 0) + 1
+    except Exception:
+        pass
     dealer = await db.users.find_one({"id": v.get('dealer_id')}, {"_id": 0, "password_hash": 0})
     if dealer:
         v['dealer'] = {"id": dealer['id'], "name": dealer.get('name'), "company": dealer.get('company'), "phone": dealer.get('phone'), "location": v.get('location')}
     return v
+
+@api.post("/vehicles/by-ids")
+async def vehicles_by_ids(body: dict):
+    ids = body.get("ids") or []
+    if not isinstance(ids, list) or not ids:
+        return {"items": []}
+    items = await db.vehicles.find({"id": {"$in": ids}, "status": "published"}, {"_id": 0}).to_list(length=200)
+    return {"items": items}
 
 
 # -------- Dealer Vehicle CRUD --------
@@ -399,6 +411,52 @@ async def dealer_stats(user: dict = Depends(require_dealer)):
     inquiries = await db.inquiries.count_documents({"dealer_id": user['id']})
     unread = await db.inquiries.count_documents({"dealer_id": user['id'], "read": False})
     return {"total_listings": total, "published_listings": published, "total_inquiries": inquiries, "unread_inquiries": unread}
+
+@api.get("/dealer/analytics")
+async def dealer_analytics(user: dict = Depends(require_dealer)):
+    vehicles = await db.vehicles.find({"dealer_id": user['id']}, {"_id": 0}).sort("created_at", -1).to_list(length=500)
+    # inquiry counts per vehicle
+    pipeline = [
+        {"$match": {"dealer_id": user['id']}},
+        {"$group": {"_id": "$vehicle_id", "count": {"$sum": 1}}},
+    ]
+    inq_counts = await db.inquiries.aggregate(pipeline).to_list(length=1000)
+    inq_map = {r["_id"]: r["count"] for r in inq_counts}
+
+    per_vehicle = []
+    total_views = 0
+    total_leads = 0
+    for v in vehicles:
+        views = int(v.get("views") or 0)
+        leads = int(inq_map.get(v["id"], 0))
+        conv = round((leads / views * 100), 1) if views > 0 else 0.0
+        per_vehicle.append({
+            "id": v["id"],
+            "title": v["title"],
+            "brand": v.get("brand"),
+            "model": v.get("model"),
+            "status": v.get("status"),
+            "image": (v.get("images") or [None])[0],
+            "views": views,
+            "leads": leads,
+            "conversion": conv,
+        })
+        total_views += views
+        total_leads += leads
+
+    overall_conv = round((total_leads / total_views * 100), 1) if total_views > 0 else 0.0
+    # top performers by views
+    top_views = sorted(per_vehicle, key=lambda x: x["views"], reverse=True)[:5]
+    top_leads = sorted(per_vehicle, key=lambda x: x["leads"], reverse=True)[:5]
+    return {
+        "total_views": total_views,
+        "total_leads": total_leads,
+        "overall_conversion": overall_conv,
+        "active_listings": sum(1 for v in vehicles if v.get("status") == "published"),
+        "per_vehicle": per_vehicle,
+        "top_views": top_views,
+        "top_leads": top_leads,
+    }
 
 
 # -------- Inquiries --------

@@ -1,26 +1,45 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { imgUrl } from "@/lib/api";
-import { Gauge, Calendar, Fuel, MapPin } from "lucide-react";
+import { useFavorites } from "@/hooks/useFavorites";
+import { Gauge, Calendar, Fuel, MapPin, Heart } from "lucide-react";
+import ImagePlaceholder from "./ImagePlaceholder";
 
 const fmtPrice = (n) => new Intl.NumberFormat("de-DE", { style: "currency", currency: "EUR", maximumFractionDigits: 0 }).format(n || 0);
 const fmtKm = (n) => new Intl.NumberFormat("de-DE").format(n || 0) + " km";
 
 export default function CarCard({ v }) {
   const img = v.images?.[0];
+  const { isFav, toggle } = useFavorites();
+  const fav = isFav(v.id);
+
+  const onFav = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    toggle(v.id);
+  };
+
   return (
     <Link
       to={`/fahrzeuge/${v.id}`}
       data-testid={`car-card-${v.id}`}
-      className="swiss-card swiss-card-hover group block"
+      className="swiss-card swiss-card-hover group block relative"
     >
       <div className="aspect-[4/3] overflow-hidden bg-gray-100 relative">
         {img ? (
           <img src={imgUrl(img)} alt={v.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" />
         ) : (
-          <div className="w-full h-full flex items-center justify-center text-gray-400 text-sm">Kein Bild</div>
+          <ImagePlaceholder />
         )}
         <div className="absolute top-3 left-3 bg-white px-3 py-1 swiss-label">{v.brand}</div>
+        <button
+          onClick={onFav}
+          data-testid={`fav-btn-${v.id}`}
+          aria-label={fav ? "Aus Merkliste entfernen" : "Zur Merkliste hinzufügen"}
+          className={`absolute top-3 right-3 w-9 h-9 inline-flex items-center justify-center transition-all ${fav ? "bg-[#E63946] text-white" : "bg-white/95 text-gray-700 hover:bg-white"}`}
+        >
+          <Heart className="w-4 h-4" fill={fav ? "currentColor" : "none"} />
+        </button>
       </div>
       <div className="p-5">
         <h3 className="font-display font-bold text-lg leading-tight line-clamp-1">{v.title}</h3>

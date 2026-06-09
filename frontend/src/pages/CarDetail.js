@@ -1,14 +1,17 @@
 import React, { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import { api, imgUrl, formatApiError } from "@/lib/api";
+import { useFavorites } from "@/hooks/useFavorites";
 import { toast } from "sonner";
-import { Calendar, Gauge, Fuel, Settings, Zap, MapPin, ArrowLeft, Phone, Building2 } from "lucide-react";
+import { Calendar, Gauge, Fuel, Settings, Zap, MapPin, ArrowLeft, Phone, Building2, Heart } from "lucide-react";
+import ImagePlaceholder from "@/components/ImagePlaceholder";
 
 const fmtPrice = (n) => new Intl.NumberFormat("de-DE", { style: "currency", currency: "EUR", maximumFractionDigits: 0 }).format(n || 0);
 const fmtKm = (n) => new Intl.NumberFormat("de-DE").format(n || 0) + " km";
 
 export default function CarDetail() {
   const { id } = useParams();
+  const { isFav, toggle } = useFavorites();
   const [v, setV] = useState(null);
   const [active, setActive] = useState(0);
   const [form, setForm] = useState({ name: "", email: "", phone: "", message: "" });
@@ -50,12 +53,21 @@ export default function CarDetail() {
       <div className="grid lg:grid-cols-[1fr_400px] gap-10">
         {/* Left — gallery + details */}
         <div>
-          <div className="aspect-[16/10] bg-gray-100 overflow-hidden">
+          <div className="aspect-[16/10] bg-gray-100 overflow-hidden relative">
             {images[active] ? (
               <img src={imgUrl(images[active])} alt={v.title} className="w-full h-full object-cover" data-testid="vehicle-main-image" />
             ) : (
-              <div className="w-full h-full flex items-center justify-center text-gray-400">Kein Bild</div>
+              <ImagePlaceholder />
             )}
+            <button
+              onClick={() => toggle(v.id)}
+              data-testid="detail-fav-btn"
+              aria-label={isFav(v.id) ? "Aus Merkliste entfernen" : "Zur Merkliste hinzufügen"}
+              className={`absolute top-4 right-4 inline-flex items-center gap-2 px-4 h-11 text-sm font-semibold transition-all ${isFav(v.id) ? "bg-[#E63946] text-white" : "bg-white/95 text-gray-800 hover:bg-white"}`}
+            >
+              <Heart className="w-4 h-4" fill={isFav(v.id) ? "currentColor" : "none"} />
+              {isFav(v.id) ? "Gemerkt" : "Merken"}
+            </button>
           </div>
           {images.length > 1 && (
             <div className="grid grid-cols-6 gap-2 mt-2">

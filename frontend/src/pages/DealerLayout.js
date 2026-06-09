@@ -37,7 +37,7 @@ export default function DealerLayout() {
           <nav className="space-y-1">
             <SideLink to="/dashboard" end icon={LayoutGrid} label="Inserate" testid="dash-nav-listings" />
             <SideLink to="/dashboard/anfragen" icon={MessagesSquare} label="Anfragen" testid="dash-nav-inquiries" />
-            <SideLink to="/dashboard/stats" icon={BarChart3} label="Übersicht" testid="dash-nav-stats" />
+            <SideLink to="/dashboard/stats" icon={BarChart3} label="Analytics" testid="dash-nav-stats" />
           </nav>
         </aside>
         <section>

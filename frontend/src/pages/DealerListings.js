@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { api, imgUrl, formatApiError } from "@/lib/api";
 import { Pencil, Trash2, Eye } from "lucide-react";
 import { toast } from "sonner";
+import ImagePlaceholder from "@/components/ImagePlaceholder";
 
 const fmtPrice = (n) => new Intl.NumberFormat("de-DE", { style: "currency", currency: "EUR", maximumFractionDigits: 0 }).format(n || 0);
 const STATUS_BADGE = {
@@ -60,7 +61,7 @@ export default function DealerListings() {
               <td className="p-4">
                 <div className="flex items-center gap-3">
                   <div className="w-16 h-12 bg-gray-100 overflow-hidden flex-shrink-0">
-                    {v.images?.[0] && <img src={imgUrl(v.images[0])} alt="" className="w-full h-full object-cover" />}
+                    {v.images?.[0] ? <img src={imgUrl(v.images[0])} alt="" className="w-full h-full object-cover" /> : <ImagePlaceholder size="sm" />}
                   </div>
                   <div>
                     <div className="font-semibold">{v.title}</div>

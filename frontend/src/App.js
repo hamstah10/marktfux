@@ -17,6 +17,7 @@ import DealerInquiries from "@/pages/DealerInquiries";
 import DealerStats from "@/pages/DealerStats";
 import CarForm from "@/pages/CarForm";
 import AdminPanel from "@/pages/AdminPanel";
+import Favorites from "@/pages/Favorites";
 
 export default function App() {
   return (
@@ -29,6 +30,7 @@ export default function App() {
           <Route path="/fahrzeuge/:id" element={<Layout><CarDetail /></Layout>} />
           <Route path="/login" element={<Layout><Login /></Layout>} />
           <Route path="/register" element={<Layout><Register /></Layout>} />
+          <Route path="/favoriten" element={<Layout><Favorites /></Layout>} />
 
           <Route path="/dashboard" element={<ProtectedRoute role="dealer"><Layout><DealerLayout /></Layout></ProtectedRoute>}>
             <Route index element={<DealerListings />} />
