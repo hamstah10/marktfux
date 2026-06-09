@@ -348,7 +348,7 @@ async def get_vehicle(vehicle_id: str):
 
 @api.post("/vehicles/by-ids")
 async def vehicles_by_ids(body: dict):
-    ids = body.get("ids") or []
+    ids = (body.get("ids") or [])[:200]
     if not isinstance(ids, list) or not ids:
         return {"items": []}
     items = await db.vehicles.find({"id": {"$in": ids}, "status": "published"}, {"_id": 0}).to_list(length=200)
