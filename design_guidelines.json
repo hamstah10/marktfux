@@ -1,0 +1,155 @@
+{
+  "project_context": {
+    "domain": "Automotive Marketplace",
+    "target_audience": "Car dealers (B2B) and End-customers (B2C)",
+    "emotion": "Trust, clarity, functional efficiency, automotive excitement",
+    "language": "German"
+  },
+  "theme_and_archetype": {
+    "theme": "light",
+    "archetype": "Archetype 4: Swiss & High-Contrast",
+    "reasoning": "A marketplace needs high trust and functional clarity. The UI should fade into the background so the car images can be the hero. A Swiss/Brutalist approach with stark white backgrounds, structural greys, and high-contrast signal red accents creates authority and clear conversion paths."
+  },
+  "colors": {
+    "background": {
+      "main": "#FFFFFF",
+      "surface": "#F9FAFB",
+      "surface_elevated": "#FFFFFF"
+    },
+    "text": {
+      "primary": "#0A0A0A",
+      "secondary": "#4B5563",
+      "muted": "#9CA3AF"
+    },
+    "primary": {
+      "main": "#E63946",
+      "hover": "#D62828",
+      "text_on_primary": "#FFFFFF"
+    },
+    "border": {
+      "light": "#E5E7EB",
+      "dark": "#D1D5DB"
+    },
+    "status": {
+      "success": "#10B981",
+      "warning": "#F59E0B",
+      "error": "#EF4444"
+    }
+  },
+  "typography": {
+    "font_families": {
+      "headings": "Outfit, sans-serif",
+      "body": "Manrope, sans-serif"
+    },
+    "scales": {
+      "h1": "text-4xl sm:text-5xl lg:text-6xl tracking-tight font-bold",
+      "h2": "text-2xl sm:text-3xl lg:text-4xl tracking-tight font-semibold",
+      "h3": "text-xl sm:text-2xl font-semibold",
+      "body_large": "text-lg leading-relaxed",
+      "body_main": "text-base leading-relaxed",
+      "small_label": "text-xs tracking-[0.2em] uppercase font-bold"
+    },
+    "rules": [
+      "Headings must use tracking-tight or tracking-tighter.",
+      "Never use Inter for headings.",
+      "Labels/Overlines must be uppercase, tiny, and have wide spacing."
+    ]
+  },
+  "spacing_and_layout": {
+    "philosophy": "Generous Spacing Philosophy. Use 2-3x more spacing than typical designs.",
+    "container_padding": "px-6 md:px-12 lg:px-24",
+    "grid_systems": {
+      "marketing_hero": "grid-cols-1 md:grid-cols-12 gap-8",
+      "public_marketplace_list": "grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6",
+      "dealer_dashboard": "grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6"
+    },
+    "surface_styles": {
+      "cards": "Flat solid surfaces with a 1px subtle border (border-gray-200), no drop shadows by default. On hover: slight lift (-translate-y-1) and shadow-lg.",
+      "header": "Solid White background with 1px bottom border (border-gray-200) for high readability."
+    }
+  },
+  "components": {
+    "buttons": {
+      "primary": "bg-[#E63946] text-white font-semibold px-6 py-3 rounded-none transition-all hover:bg-[#D62828] hover:-translate-y-0.5",
+      "secondary": "bg-transparent border-2 border-[#0A0A0A] text-[#0A0A0A] font-semibold px-6 py-3 rounded-none transition-all hover:bg-[#F3F4F6]"
+    },
+    "forms_and_inputs": {
+      "style": "Shadcn components heavily customized to match the Swiss aesthetic. Sharp corners (rounded-none). 1px solid borders.",
+      "labels": "text-sm font-semibold text-gray-900 mb-2 block",
+      "focus_state": "focus:ring-2 focus:ring-[#E63946] focus:border-transparent outline-none"
+    },
+    "images": {
+      "aspect_ratios": "4:3 for car grid items, 16:9 for hero sections, 3:2 for gallery items.",
+      "treatment": "Never overlay heavy gradients on car images. If text overlay is needed, use a subtle black gradient at the bottom 20% only."
+    },
+    "icons": {
+      "library": "lucide-react",
+      "style": "Clean, unembellished 24px default size, matching text color unless indicating status."
+    }
+  },
+  "pages_and_views": {
+    "landing_page": {
+      "hero": "Massive search bar front-and-center. 'Klarer, vertrauenswürdiger Marketplace-Look'. Background image of a car on a scenic road, subtle overlay so search stands out.",
+      "featured_cars": "Grid of top cars. Large images, minimal text (Brand, Model, Price, Year, Mileage)."
+    },
+    "search_results": {
+      "layout": "Sidebar on the left for filters (Marke, Preis, Baujahr, Kilometer, Kraftstoff). Grid on the right for results. Sticky header for quick access to search term modification."
+    },
+    "car_detail": {
+      "layout": "2-column layout on desktop. Left column (60-70%): Massive image gallery, detailed description, specs table. Right column (30-40%): Sticky sidebar with Price, Dealer Name, Contact/Inquiry Form (Anfrageformular)."
+    },
+    "dealer_dashboard": {
+      "layout": "Sachlich und effizient (Matter-of-fact and efficient). Sidebar navigation. Main content area uses dense data tables for listing management. Clear 'Neues Fahrzeug anlegen' (Add New Car) button.",
+      "listing_form": "Multi-step or clean long-scroll form. Includes a prominent 'KI-Beschreibung generieren' (Generate AI Description) button using GPT-5.2 mock."
+    },
+    "admin_panel": {
+      "layout": "Similar to dealer dashboard but with super-user views: Dealer overview, listing approval queue, moderation tools."
+    }
+  },
+  "media_urls": {
+    "hero_backgrounds": [
+      {
+        "url": "https://images.unsplash.com/photo-1603881359318-e2bc03deaaee?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA0MTJ8MHwxfHNlYXJjaHwzfHxzcG9ydHMlMjBjYXIlMjBkcml2aW5nJTIwcm9hZHxlbnwwfHx8fDE3ODA5NzQzODV8MA&ixlib=rb-4.1.0&q=85",
+        "description": "Dark mountain road, great for landing page background",
+        "category": "hero"
+      }
+    ],
+    "car_listings": [
+      {
+        "url": "https://images.unsplash.com/photo-1573074556015-71d2140a6372?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA0MTJ8MHwxfHNlYXJjaHwxfHxzcG9ydHMlMjBjYXIlMjBkcml2aW5nJTIwcm9hZHxlbnwwfHx8fDE3ODA5NzQzODV8MA&ixlib=rb-4.1.0&q=85",
+        "description": "Red sports car",
+        "category": "listing_mock"
+      },
+      {
+        "url": "https://images.unsplash.com/photo-1620591309146-f5b0dc646b28?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA0MTJ8MHwxfHNlYXJjaHw0fHxzcG9ydHMlMjBjYXIlMjBkcml2aW5nJTIwcm9hZHxlbnwwfHx8fDE3ODA5NzQzODV8MA&ixlib=rb-4.1.0&q=85",
+        "description": "Black sedan",
+        "category": "listing_mock"
+      }
+    ],
+    "dealership_and_about": [
+      {
+        "url": "https://images.pexels.com/photos/16176576/pexels-photo-16176576.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+        "description": "Sleek indoor dealership space",
+        "category": "dealer_profile"
+      },
+      {
+        "url": "https://images.unsplash.com/photo-1777175013391-537a48303538?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NTYxODh8MHwxfHNlYXJjaHw0fHxjYXIlMjBkZWFsZXJzaGlwJTIwc2hvd3Jvb218ZW58MHx8fHwxNzgwOTc0Mzg1fDA&ixlib=rb-4.1.0&q=85",
+        "description": "White car in showroom",
+        "category": "dealer_profile"
+      }
+    ],
+    "logos": [
+      {
+        "url": "https://images.unsplash.com/photo-1599305445671-ac291c95aaa9?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjY2NzN8MHwxfHNlYXJjaHwxfHxjb21wYW55JTIwbG9nb3xlbnwwfHx8fDE3ODA5NzQzODV8MA&ixlib=rb-4.1.0&q=85",
+        "description": "Mercedes Logo",
+        "category": "brand_logo"
+      }
+    ]
+  },
+  "technical_and_accessibility": {
+    "testing": "All interactive and key informational elements MUST include a 'data-testid' attribute using kebab-case role-based naming (e.g., 'login-form-submit-button', 'car-search-input', 'dealer-inquiry-button').",
+    "accessibility": "Minimum 4.5:1 contrast ratio for normal text. Use focus rings on all interactive elements. Add aria-hidden='true' to purely decorative elements.",
+    "file_structure": "Since the project uses .js files, all React components should be written in JavaScript (.js or .jsx), not TypeScript. Prop-types should be used for validation if necessary."
+  },
+  "instructions_to_main_agent": "1. Initialize Tailwind with the specified colors and fonts. 2. Implement Shadcn primitives customized to the Swiss & High-Contrast archetype (rounded-none, high contrast borders). 3. Build the public marketplace layout first (Hero Search, Listing Grid), then the car detail page. 4. Implement the B2B Dealer Dashboard with a focus on data density and clear actions. 5. Integrate the mocked GPT-5.2 API for the AI description generator in the listing creation flow. 6. Use the provided media URLs exclusively for visuals. 7. Add data-testid attributes to all interactive elements."
+}
