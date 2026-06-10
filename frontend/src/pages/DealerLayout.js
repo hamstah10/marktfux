@@ -17,7 +17,7 @@ export default function DealerLayout() {
     <div className="container-x py-10">
       <div className="flex items-end justify-between mb-8">
         <div>
-          <div className="swiss-label text-[#E63946]">Händler-Dashboard</div>
+          <div className="swiss-label text-[#16A34A]">Händler-Dashboard</div>
           <h1 className="font-display text-3xl font-bold tracking-tight mt-2">Hallo, {user?.name?.split(" ")[0]}</h1>
         </div>
         <Link to="/dashboard/neu" data-testid="new-listing-btn" className="swiss-btn-primary"><Plus className="w-4 h-4" /> Neues Fahrzeug</Link>
@@ -50,9 +50,9 @@ export default function DealerLayout() {
 
 function StatCard({ label, value, accent, highlight }) {
   return (
-    <div className={`swiss-card p-5 ${highlight ? "border-[#E63946] border-2" : ""}`}>
+    <div className={`swiss-card p-5 ${highlight ? "border-[#16A34A] border-2" : ""}`}>
       <div className="swiss-label text-gray-500">{label}</div>
-      <div className={`font-display font-extrabold text-3xl mt-2 ${accent ? "text-[#E63946]" : ""}`}>{value}</div>
+      <div className={`font-display font-extrabold text-3xl mt-2 ${accent ? "text-[#16A34A]" : ""}`}>{value}</div>
     </div>
   );
 }
@@ -60,7 +60,7 @@ function StatCard({ label, value, accent, highlight }) {
 function SideLink({ to, end, icon: Icon, label, testid }) {
   return (
     <NavLink end={end} to={to} data-testid={testid} className={({ isActive }) =>
-      `flex items-center gap-3 px-4 py-3 text-sm font-semibold border-l-4 transition-colors ${isActive ? "bg-gray-50 border-[#E63946] text-[#0A0A0A]" : "border-transparent text-gray-600 hover:text-[#0A0A0A] hover:bg-gray-50"}`
+      `flex items-center gap-3 px-4 py-3 text-sm font-semibold border-l-4 transition-colors ${isActive ? "bg-gray-50 border-[#16A34A] text-[#0A0A0A]" : "border-transparent text-gray-600 hover:text-[#0A0A0A] hover:bg-gray-50"}`
     }>
       <Icon className="w-4 h-4" /> {label}
     </NavLink>

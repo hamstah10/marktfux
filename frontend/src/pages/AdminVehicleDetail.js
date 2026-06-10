@@ -39,7 +39,7 @@ export default function AdminVehicleDetail() {
 
   return (
     <div className="container-x py-10">
-      <button onClick={() => nav("/admin")} data-testid="back-to-admin" className="inline-flex items-center gap-2 text-xs text-gray-500 hover:text-[#E63946] mb-6">
+      <button onClick={() => nav("/admin")} data-testid="back-to-admin" className="inline-flex items-center gap-2 text-xs text-gray-500 hover:text-[#16A34A] mb-6">
         <ArrowLeft className="w-3.5 h-3.5" /> Admin-Übersicht
       </button>
 
@@ -47,7 +47,7 @@ export default function AdminVehicleDetail() {
       <div className="flex flex-wrap items-start justify-between gap-6 mb-10">
         <div>
           <div className="flex items-center gap-2 mb-2">
-            <span className="swiss-label text-[#E63946]">Inserats-Detail</span>
+            <span className="swiss-label text-[#16A34A]">Inserats-Detail</span>
             <span className={`text-xs font-bold px-2 py-1 border ${STATUS_BADGE[v.status] || ""}`}>{v.status}</span>
           </div>
           <h1 className="font-display text-3xl md:text-4xl font-bold tracking-tight" data-testid="admin-vehicle-title">
@@ -82,7 +82,7 @@ export default function AdminVehicleDetail() {
           {images.length > 1 && (
             <div className="grid grid-cols-6 gap-2 mt-2">
               {images.map((p, i) => (
-                <button key={i} onClick={() => setActive(i)} className={`aspect-[4/3] overflow-hidden border-2 ${active === i ? "border-[#E63946]" : "border-transparent"}`}>
+                <button key={i} onClick={() => setActive(i)} className={`aspect-[4/3] overflow-hidden border-2 ${active === i ? "border-[#16A34A]" : "border-transparent"}`}>
                   <img src={imgUrl(p)} alt="" className="w-full h-full object-cover" />
                 </button>
               ))}
@@ -108,7 +108,7 @@ export default function AdminVehicleDetail() {
           {/* Inquiries */}
           <div className="mt-10">
             <h2 className="font-display text-2xl font-bold mb-5 flex items-center gap-2">
-              <MessagesSquare className="w-5 h-5 text-[#E63946]" /> Anfragen ({inquiries.length})
+              <MessagesSquare className="w-5 h-5 text-[#16A34A]" /> Anfragen ({inquiries.length})
             </h2>
             {inquiries.length === 0 ? (
               <div className="swiss-card p-6 text-sm text-gray-500 text-center">Noch keine Anfragen.</div>
@@ -126,7 +126,7 @@ export default function AdminVehicleDetail() {
                       </div>
                       <div className="text-xs text-gray-400 flex flex-col items-end gap-1">
                         <span>{new Date(i.created_at).toLocaleString("de-DE")}</span>
-                        {!i.read && <span className="text-[10px] font-bold uppercase tracking-widest text-[#E63946]">Neu</span>}
+                        {!i.read && <span className="text-[10px] font-bold uppercase tracking-widest text-[#16A34A]">Neu</span>}
                       </div>
                     </div>
                     <p className="text-sm text-gray-700 whitespace-pre-wrap mt-3 leading-relaxed">{i.message}</p>
@@ -159,16 +159,16 @@ export default function AdminVehicleDetail() {
           </div>
 
           {dealer && (
-            <Link to={`/admin/haendler/${dealer.id}`} data-testid="vd-dealer-link" className="swiss-card p-6 block hover:border-[#E63946] transition-colors group">
+            <Link to={`/admin/haendler/${dealer.id}`} data-testid="vd-dealer-link" className="swiss-card p-6 block hover:border-[#16A34A] transition-colors group">
               <div className="swiss-label text-gray-500">Händler</div>
               <div className="flex items-start justify-between gap-3 mt-3">
                 <div className="min-w-0">
-                  <div className="font-display font-bold text-lg flex items-center gap-2"><Building2 className="w-4 h-4 text-[#E63946]" /> {dealer.company || dealer.name}</div>
+                  <div className="font-display font-bold text-lg flex items-center gap-2"><Building2 className="w-4 h-4 text-[#16A34A]" /> {dealer.company || dealer.name}</div>
                   {dealer.company && <div className="text-xs text-gray-500 flex items-center gap-1 mt-1"><User className="w-3 h-3" /> {dealer.name}</div>}
                   <div className="text-xs text-gray-500 flex items-center gap-1 mt-1"><Mail className="w-3 h-3" /> {dealer.email}</div>
                   {dealer.phone && <div className="text-xs text-gray-500 flex items-center gap-1 mt-1"><Phone className="w-3 h-3" /> {dealer.phone}</div>}
                 </div>
-                <span className="swiss-label text-gray-400 group-hover:text-[#E63946] transition-colors">Profil →</span>
+                <span className="swiss-label text-gray-400 group-hover:text-[#16A34A] transition-colors">Profil →</span>
               </div>
               <div className="mt-3 text-xs">
                 <span className={`text-xs font-bold px-2 py-0.5 border ${dealer.status === "approved" ? "bg-green-50 text-green-700 border-green-200" : "bg-yellow-50 text-yellow-800 border-yellow-200"}`}>{dealer.status}</span>

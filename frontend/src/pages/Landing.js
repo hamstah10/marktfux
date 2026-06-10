@@ -57,7 +57,7 @@ export default function Landing() {
               transition={{ duration: 0.6, ease }}
             >
               <motion.span
-                className="inline-block h-px bg-[#E63946]"
+                className="inline-block h-px bg-[#16A34A]"
                 initial={{ width: 0 }}
                 animate={{ width: 40 }}
                 transition={{ duration: 0.8, delay: 0.2, ease }}
@@ -83,7 +83,7 @@ export default function Landing() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.7, delay: 0.4, ease }}
               >
-                <span className="serif-em text-[#E63946]">Lieblings</span>auto.
+                <span className="serif-em text-[#16A34A]">Lieblings</span>auto.
               </motion.span>
             </h1>
 
@@ -131,9 +131,9 @@ export default function Landing() {
               animate={{ opacity: 1 }}
               transition={{ duration: 0.6, delay: 0.95 }}
             >
-              <span className="flex items-center gap-2"><ShieldCheck className="w-4 h-4 text-[#E63946]" /> Geprüfte Händler</span>
-              <span className="flex items-center gap-2"><Zap className="w-4 h-4 text-[#E63946]" /> 2-Min Inserat</span>
-              <span className="flex items-center gap-2"><Sparkles className="w-4 h-4 text-[#E63946]" /> KI-Texte (GPT-5.2)</span>
+              <span className="flex items-center gap-2"><ShieldCheck className="w-4 h-4 text-[#16A34A]" /> Geprüfte Händler</span>
+              <span className="flex items-center gap-2"><Zap className="w-4 h-4 text-[#16A34A]" /> 2-Min Inserat</span>
+              <span className="flex items-center gap-2"><Sparkles className="w-4 h-4 text-[#16A34A]" /> KI-Texte (GPT-5.2)</span>
             </motion.div>
           </div>
 
@@ -150,7 +150,7 @@ export default function Landing() {
                 whileHover={{ y: -4 }}
                 transition={{ duration: 0.3, ease }}
               >
-                <div className="swiss-label text-[#E63946]">Diese Woche</div>
+                <div className="swiss-label text-[#16A34A]">Diese Woche</div>
                 <div className="font-display text-6xl font-extrabold mt-4 leading-none">
                   +<CountUp to={featured.length || 0} />
                 </div>
@@ -160,7 +160,7 @@ export default function Landing() {
                 </Link>
               </motion.div>
               <motion.div
-                className="absolute -bottom-6 -left-6 bg-[#E63946] text-white p-5 max-w-[200px] hidden xl:block"
+                className="absolute -bottom-6 -left-6 bg-[#16A34A] text-white p-5 max-w-[200px] hidden xl:block"
                 initial={{ opacity: 0, scale: 0.85 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.6, delay: 1.1, ease }}
@@ -217,12 +217,12 @@ export default function Landing() {
         <Reveal>
           <div className="flex items-end justify-between mb-12">
             <div>
-              <div className="swiss-label text-[#E63946]">Aktuell · frisch</div>
+              <div className="swiss-label text-[#16A34A]">Aktuell · frisch</div>
               <h2 className="font-display text-4xl md:text-5xl font-extrabold tracking-tighter mt-3 max-w-2xl">
                 Frisch <span className="serif-em">eingestellt</span>.
               </h2>
             </div>
-            <Link to="/fahrzeuge" data-testid="all-vehicles-link" className="hidden md:inline-flex items-center gap-2 swiss-label hover:text-[#E63946] transition-colors group">
+            <Link to="/fahrzeuge" data-testid="all-vehicles-link" className="hidden md:inline-flex items-center gap-2 swiss-label hover:text-[#16A34A] transition-colors group">
               Alle Fahrzeuge <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
             </Link>
           </div>
@@ -251,10 +251,10 @@ export default function Landing() {
         <div className="container-x py-24">
           <Reveal>
             <div className="max-w-3xl">
-              <div className="swiss-label text-[#E63946]">So funktioniert's</div>
+              <div className="swiss-label text-[#16A34A]">So funktioniert's</div>
               <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tighter mt-4">
                 Drei Schritte.<br />
-                <span className="serif-em text-[#E63946]">Null Bullshit.</span>
+                <span className="serif-em text-[#16A34A]">Null Bullshit.</span>
               </h2>
             </div>
           </Reveal>
@@ -294,7 +294,7 @@ export default function Landing() {
             />
           </Reveal>
           <Reveal delay={0.1} className="order-1 lg:order-2">
-            <div className="swiss-label text-[#E63946]">Für Händler</div>
+            <div className="swiss-label text-[#16A34A]">Für Händler</div>
             <h2 className="font-display text-4xl md:text-5xl font-extrabold tracking-tighter mt-3 leading-[1.02]">
               Inserate, die <span className="serif-em">verkaufen</span> — nicht nur dasitzen.
             </h2>
@@ -317,7 +317,7 @@ export default function Landing() {
                   viewport={{ once: true }}
                   transition={{ duration: 0.4, delay: i * 0.08 }}
                 >
-                  <span className="w-1.5 h-1.5 mt-2 bg-[#E63946] flex-shrink-0" />
+                  <span className="w-1.5 h-1.5 mt-2 bg-[#16A34A] flex-shrink-0" />
                   <span>{t}</span>
                 </motion.li>
               ))}
@@ -333,7 +333,7 @@ export default function Landing() {
       {/* ============== FINAL CTA ============== */}
       <section className="container-x py-24 text-center">
         <Reveal>
-          <div className="swiss-label text-[#E63946]">Bereit?</div>
+          <div className="swiss-label text-[#16A34A]">Bereit?</div>
           <h2 className="font-display text-4xl md:text-6xl lg:text-7xl font-extrabold tracking-tighter mt-4 max-w-4xl mx-auto leading-[0.95]">
             Dein nächster <span className="serif-em">Schlüssel</span> wartet schon.
           </h2>

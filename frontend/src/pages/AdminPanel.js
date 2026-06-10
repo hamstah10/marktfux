@@ -36,7 +36,7 @@ export default function AdminPanel() {
 
   return (
     <div className="container-x py-10">
-      <div className="swiss-label text-[#E63946]">Admin-Panel</div>
+      <div className="swiss-label text-[#16A34A]">Admin-Panel</div>
       <h1 className="font-display text-3xl font-bold tracking-tight mt-2">Plattform-Verwaltung</h1>
 
       {stats && (
@@ -54,7 +54,7 @@ export default function AdminPanel() {
             { v: "dealers", l: `Händler (${dealers.length})` },
             { v: "vehicles", l: `Inserate (${vehicles.length})` },
           ].map(t => (
-            <button key={t.v} data-testid={`admin-tab-${t.v}`} onClick={() => setTab(t.v)} className={`px-5 py-3 text-sm font-semibold border-b-2 -mb-px ${tab === t.v ? "border-[#E63946] text-[#0A0A0A]" : "border-transparent text-gray-500"}`}>
+            <button key={t.v} data-testid={`admin-tab-${t.v}`} onClick={() => setTab(t.v)} className={`px-5 py-3 text-sm font-semibold border-b-2 -mb-px ${tab === t.v ? "border-[#16A34A] text-[#0A0A0A]" : "border-transparent text-gray-500"}`}>
               {t.l}
             </button>
           ))}
@@ -85,7 +85,7 @@ export default function AdminPanel() {
                   <tr key={d.id} className="border-b border-gray-100 hover:bg-gray-50">
                     <td className="p-4">
                       <Link to={`/admin/haendler/${d.id}`} data-testid={`dealer-row-${d.id}`} className="group block">
-                        <div className="font-semibold group-hover:text-[#E63946] transition-colors">{d.company || d.name}</div>
+                        <div className="font-semibold group-hover:text-[#16A34A] transition-colors">{d.company || d.name}</div>
                         <div className="text-xs text-gray-500">{d.name}</div>
                       </Link>
                     </td>
@@ -96,7 +96,7 @@ export default function AdminPanel() {
                         {d.status !== "approved" && <IconBtn testid={`approve-${d.id}`} onClick={() => setDealerStatus(d.id, "approved")} icon={CheckCircle2} color="text-green-600" title="Freigeben" />}
                         {d.status !== "rejected" && <IconBtn testid={`reject-${d.id}`} onClick={() => setDealerStatus(d.id, "rejected")} icon={XCircle} color="text-red-600" title="Ablehnen" />}
                         {d.status === "approved" && <IconBtn testid={`suspend-${d.id}`} onClick={() => setDealerStatus(d.id, "suspended")} icon={Ban} color="text-orange-600" title="Sperren" />}
-                        <Link to={`/admin/haendler/${d.id}`} className="p-2 text-gray-400 hover:text-[#E63946]" title="Details"><ChevronRight className="w-4 h-4" /></Link>
+                        <Link to={`/admin/haendler/${d.id}`} className="p-2 text-gray-400 hover:text-[#16A34A]" title="Details"><ChevronRight className="w-4 h-4" /></Link>
                       </div>
                     </td>
                   </tr>
@@ -125,7 +125,7 @@ export default function AdminPanel() {
                   <tr key={v.id} className="border-b border-gray-100 hover:bg-gray-50">
                     <td className="p-4">
                       <Link to={`/admin/fahrzeug/${v.id}`} data-testid={`vehicle-row-${v.id}`} className="group block">
-                        <div className="font-semibold group-hover:text-[#E63946] transition-colors">{v.title}</div>
+                        <div className="font-semibold group-hover:text-[#16A34A] transition-colors">{v.title}</div>
                         <div className="text-xs text-gray-500">{v.brand} {v.model} · {v.year}</div>
                       </Link>
                     </td>
@@ -138,7 +138,7 @@ export default function AdminPanel() {
                         ) : (
                           <IconBtn testid={`deactivate-${v.id}`} onClick={() => setVehicleStatus(v.id, "deactivated")} icon={Ban} color="text-orange-600" title="Deaktivieren" />
                         )}
-                        <Link to={`/admin/fahrzeug/${v.id}`} className="p-2 text-gray-400 hover:text-[#E63946]" title="Details"><ChevronRight className="w-4 h-4" /></Link>
+                        <Link to={`/admin/fahrzeug/${v.id}`} className="p-2 text-gray-400 hover:text-[#16A34A]" title="Details"><ChevronRight className="w-4 h-4" /></Link>
                       </div>
                     </td>
                   </tr>
@@ -155,9 +155,9 @@ export default function AdminPanel() {
 
 function Stat({ label, value, accent }) {
   return (
-    <div className={`swiss-card p-5 ${accent ? "border-[#E63946] border-2" : ""}`}>
+    <div className={`swiss-card p-5 ${accent ? "border-[#16A34A] border-2" : ""}`}>
       <div className="swiss-label text-gray-500">{label}</div>
-      <div className={`font-display text-3xl font-extrabold mt-2 ${accent ? "text-[#E63946]" : ""}`}>{value}</div>
+      <div className={`font-display text-3xl font-extrabold mt-2 ${accent ? "text-[#16A34A]" : ""}`}>{value}</div>
     </div>
   );
 }

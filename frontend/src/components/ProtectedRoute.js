@@ -11,7 +11,7 @@ export function ProtectedRoute({ children, role }) {
     return (
       <div className="container-x py-20 max-w-2xl">
         <div className="swiss-card p-8">
-          <div className="swiss-label text-[#E63946]">Status</div>
+          <div className="swiss-label text-[#16A34A]">Status</div>
           <h2 className="font-display text-3xl font-bold mt-2">Konto wird geprüft</h2>
           <p className="text-gray-600 mt-3">Dein Händler-Konto wartet auf Freigabe durch unser Admin-Team. Du wirst informiert, sobald dein Konto freigeschaltet ist.</p>
         </div>

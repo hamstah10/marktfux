@@ -73,7 +73,7 @@ export default function Marketplace() {
     <div className="container-x py-10">
       <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-8">
         <div>
-          <div className="swiss-label text-[#E63946]">Marktplatz</div>
+          <div className="swiss-label text-[#16A34A]">Marktplatz</div>
           <h1 className="font-display text-3xl md:text-4xl font-bold tracking-tight mt-2">Fahrzeuge entdecken</h1>
           <p className="text-sm text-gray-500 mt-1">
             {total === 0 ? "0 Treffer" : <>Zeige <span className="font-semibold text-gray-700">{showingFrom}–{showingTo}</span> von <span className="font-semibold text-gray-700">{total}</span></>}
@@ -87,7 +87,7 @@ export default function Marketplace() {
               value={filters.search}
               onChange={(e) => upd("search", e.target.value)}
               placeholder="Suche..."
-              className="pl-9 pr-3 py-2.5 border border-gray-200 outline-none focus:border-[#E63946] w-64 text-sm"
+              className="pl-9 pr-3 py-2.5 border border-gray-200 outline-none focus:border-[#16A34A] w-64 text-sm"
             />
           </div>
           <div className="w-56">
@@ -110,7 +110,7 @@ export default function Marketplace() {
             <div className="flex items-center gap-2 swiss-label">
               <SlidersHorizontal className="w-4 h-4" /> Filter
             </div>
-            <button data-testid="filter-reset" onClick={reset} className="text-xs text-gray-500 hover:text-[#E63946] underline">Zurücksetzen</button>
+            <button data-testid="filter-reset" onClick={reset} className="text-xs text-gray-500 hover:text-[#16A34A] underline">Zurücksetzen</button>
           </div>
 
           <FilterBlock label="Marke">
@@ -244,7 +244,7 @@ function Pagination({ page, totalPages, onChange }) {
   );
 }
 
-const numInp = "border border-gray-200 py-2 px-3 text-sm focus:border-[#E63946] outline-none";
+const numInp = "border border-gray-200 py-2 px-3 text-sm focus:border-[#16A34A] outline-none";
 
 function FilterBlock({ label, children }) {
   return (

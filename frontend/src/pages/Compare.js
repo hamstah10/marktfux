@@ -50,12 +50,12 @@ export default function Compare() {
     <div className="container-x py-10">
       <div className="flex flex-wrap items-end justify-between gap-4 mb-8">
         <div>
-          <Link to="/fahrzeuge" className="inline-flex items-center gap-2 text-xs text-gray-500 hover:text-[#E63946] mb-3">
+          <Link to="/fahrzeuge" className="inline-flex items-center gap-2 text-xs text-gray-500 hover:text-[#16A34A] mb-3">
             <ArrowLeft className="w-3.5 h-3.5" /> Zurück
           </Link>
-          <div className="swiss-label text-[#E63946] flex items-center gap-2"><GitCompareArrows className="w-3.5 h-3.5" /> Vergleich</div>
+          <div className="swiss-label text-[#16A34A] flex items-center gap-2"><GitCompareArrows className="w-3.5 h-3.5" /> Vergleich</div>
           <h1 className="font-display text-3xl md:text-4xl font-bold tracking-tight mt-2">
-            Side-by-Side <em className="font-serif italic font-normal text-[#E63946]">Vergleich</em>
+            Side-by-Side <em className="font-serif italic font-normal text-[#16A34A]">Vergleich</em>
           </h1>
           <p className="text-sm text-gray-500 mt-2">Bis zu 3 Fahrzeuge gleichzeitig — beste Werte sind rot markiert.</p>
         </div>
@@ -106,9 +106,9 @@ export default function Compare() {
                       const val = v?.[row.k];
                       const isW = w !== null && val === w;
                       return (
-                        <td key={v.id + row.k} className={`border-r border-gray-200 p-4 font-semibold ${isW ? "text-[#E63946]" : "text-gray-900"}`}>
+                        <td key={v.id + row.k} className={`border-r border-gray-200 p-4 font-semibold ${isW ? "text-[#16A34A]" : "text-gray-900"}`}>
                           {val != null && val !== "" ? (row.fmt ? row.fmt(val) : val) : "—"}
-                          {isW && <span className="ml-2 text-[10px] uppercase tracking-widest font-bold text-[#E63946]">Best</span>}
+                          {isW && <span className="ml-2 text-[10px] uppercase tracking-widest font-bold text-[#16A34A]">Best</span>}
                         </td>
                       );
                     })}

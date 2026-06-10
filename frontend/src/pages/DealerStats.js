@@ -57,7 +57,7 @@ export default function DealerStats() {
               <XAxis dataKey="name" tick={{ fontSize: 11, fill: "#6B7280" }} tickLine={false} axisLine={{ stroke: "#E5E7EB" }} />
               <YAxis tick={{ fontSize: 11, fill: "#6B7280" }} tickLine={false} axisLine={{ stroke: "#E5E7EB" }} allowDecimals={false} />
               <Tooltip cursor={{ fill: "#F9FAFB" }} contentStyle={{ border: "1px solid #E5E7EB", borderRadius: 0, fontSize: 12 }} />
-              <Bar dataKey={tab} fill="#E63946" />
+              <Bar dataKey={tab} fill="#16A34A" />
             </BarChart>
           </ResponsiveContainer>
         )}
@@ -79,7 +79,7 @@ export default function DealerStats() {
           </thead>
           <tbody>
             {data.per_vehicle.length === 0 ? (
-              <tr><td colSpan={4} className="p-10 text-center text-gray-400">Noch keine Inserate. <Link to="/dashboard/neu" className="text-[#E63946] font-semibold ml-1">Jetzt anlegen</Link>.</td></tr>
+              <tr><td colSpan={4} className="p-10 text-center text-gray-400">Noch keine Inserate. <Link to="/dashboard/neu" className="text-[#16A34A] font-semibold ml-1">Jetzt anlegen</Link>.</td></tr>
             ) : data.per_vehicle.map(v => (
               <tr key={v.id} className="border-b border-gray-100 hover:bg-gray-50">
                 <td className="p-4">
@@ -107,12 +107,12 @@ export default function DealerStats() {
 
 function Kpi({ icon: Icon, label, value, accent }) {
   return (
-    <div className={`swiss-card p-5 ${accent ? "border-[#E63946] border-2" : ""}`}>
+    <div className={`swiss-card p-5 ${accent ? "border-[#16A34A] border-2" : ""}`}>
       <div className="flex items-center justify-between">
         <div className="swiss-label text-gray-500">{label}</div>
         <Icon className="w-4 h-4 text-gray-400" />
       </div>
-      <div className={`font-display text-3xl font-extrabold mt-3 ${accent ? "text-[#E63946]" : ""}`}>{value}</div>
+      <div className={`font-display text-3xl font-extrabold mt-3 ${accent ? "text-[#16A34A]" : ""}`}>{value}</div>
     </div>
   );
 }

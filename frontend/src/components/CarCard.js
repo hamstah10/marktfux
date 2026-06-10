@@ -65,7 +65,7 @@ export default function CarCard({ v }) {
               onClick={onFav}
               data-testid={`fav-btn-${v.id}`}
               aria-label={fav ? "Aus Merkliste entfernen" : "Merken"}
-              className={`w-9 h-9 inline-flex items-center justify-center transition-colors ${fav ? "bg-[#E63946] text-white" : "bg-white/95 text-gray-700 hover:bg-white"}`}
+              className={`w-9 h-9 inline-flex items-center justify-center transition-colors ${fav ? "bg-[#16A34A] text-white" : "bg-white/95 text-gray-700 hover:bg-white"}`}
             >
               <Heart className="w-4 h-4" fill={fav ? "currentColor" : "none"} />
             </motion.button>

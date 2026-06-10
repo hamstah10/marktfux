@@ -17,7 +17,7 @@ function StarRow({ value = 0, size = "w-4 h-4", onChange }) {
           className={onChange ? "transition-transform hover:scale-110" : "cursor-default"}
           aria-label={`${i} Sterne`}
         >
-          <Star className={`${size} ${i <= value ? "fill-[#E63946] text-[#E63946]" : "text-gray-300"}`} />
+          <Star className={`${size} ${i <= value ? "fill-[#16A34A] text-[#16A34A]" : "text-gray-300"}`} />
         </button>
       ))}
     </div>
@@ -74,14 +74,14 @@ export default function DealerProfile() {
           </Link>
           <div className="grid md:grid-cols-[1fr_auto] gap-8 items-end">
             <div>
-              <div className="swiss-label text-[#E63946]">Autohändler</div>
+              <div className="swiss-label text-[#16A34A]">Autohändler</div>
               <h1 className="font-display text-4xl md:text-6xl font-extrabold tracking-tight mt-3" data-testid="dealer-name">
                 {dealer.company || dealer.name}
               </h1>
               <div className="flex flex-wrap items-center gap-x-6 gap-y-2 mt-6 text-sm text-gray-300">
-                {dealer.company && <span className="flex items-center gap-2"><Building2 className="w-4 h-4 text-[#E63946]" /> {dealer.name}</span>}
-                {dealer.phone && <span className="flex items-center gap-2"><Phone className="w-4 h-4 text-[#E63946]" /> {dealer.phone}</span>}
-                <span className="flex items-center gap-2"><Calendar className="w-4 h-4 text-[#E63946]" /> Mitglied seit {memberSince}</span>
+                {dealer.company && <span className="flex items-center gap-2"><Building2 className="w-4 h-4 text-[#16A34A]" /> {dealer.name}</span>}
+                {dealer.phone && <span className="flex items-center gap-2"><Phone className="w-4 h-4 text-[#16A34A]" /> {dealer.phone}</span>}
+                <span className="flex items-center gap-2"><Calendar className="w-4 h-4 text-[#16A34A]" /> Mitglied seit {memberSince}</span>
               </div>
             </div>
             <div className="flex flex-col items-start md:items-end">
@@ -102,7 +102,7 @@ export default function DealerProfile() {
       <section className="container-x py-16">
         <div className="flex items-end justify-between mb-8">
           <div>
-            <div className="swiss-label text-[#E63946]">Fahrzeuge</div>
+            <div className="swiss-label text-[#16A34A]">Fahrzeuge</div>
             <h2 className="font-display text-2xl md:text-3xl font-bold mt-2">Inserate dieses Händlers</h2>
           </div>
         </div>
@@ -120,7 +120,7 @@ export default function DealerProfile() {
         <div className="container-x py-16">
           <div className="flex items-end justify-between mb-8">
             <div>
-              <div className="swiss-label text-[#E63946]">Bewertungen</div>
+              <div className="swiss-label text-[#16A34A]">Bewertungen</div>
               <h2 className="font-display text-2xl md:text-3xl font-bold mt-2">Was Kunden sagen</h2>
             </div>
             {!showForm && (
@@ -139,11 +139,11 @@ export default function DealerProfile() {
               </div>
               <div className="mt-4">
                 <label className="swiss-label">Dein Name *</label>
-                <input required value={form.name} onChange={(e) => setForm({...form, name: e.target.value})} data-testid="review-name" className="w-full mt-2 border border-gray-200 py-2.5 px-3 outline-none focus:border-[#E63946] text-sm" />
+                <input required value={form.name} onChange={(e) => setForm({...form, name: e.target.value})} data-testid="review-name" className="w-full mt-2 border border-gray-200 py-2.5 px-3 outline-none focus:border-[#16A34A] text-sm" />
               </div>
               <div className="mt-4">
                 <label className="swiss-label">Kommentar * (min. 10 Zeichen)</label>
-                <textarea required value={form.comment} onChange={(e) => setForm({...form, comment: e.target.value})} data-testid="review-comment" rows={4} className="w-full mt-2 border border-gray-200 py-2.5 px-3 outline-none focus:border-[#E63946] text-sm" />
+                <textarea required value={form.comment} onChange={(e) => setForm({...form, comment: e.target.value})} data-testid="review-comment" rows={4} className="w-full mt-2 border border-gray-200 py-2.5 px-3 outline-none focus:border-[#16A34A] text-sm" />
               </div>
               <div className="flex items-center justify-end gap-3 mt-6">
                 <button type="button" onClick={() => setShowForm(false)} className="swiss-btn-secondary text-sm py-2 px-4">Abbrechen</button>

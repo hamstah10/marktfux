@@ -30,7 +30,7 @@ export default function Favorites() {
     <div className="container-x py-10">
       <div className="flex items-end justify-between mb-8">
         <div>
-          <div className="swiss-label text-[#E63946] flex items-center gap-2"><Heart className="w-3.5 h-3.5" fill="currentColor" /> Merkliste</div>
+          <div className="swiss-label text-[#16A34A] flex items-center gap-2"><Heart className="w-3.5 h-3.5" fill="currentColor" /> Merkliste</div>
           <h1 className="font-display text-3xl md:text-4xl font-bold tracking-tight mt-2">Deine gemerkten Fahrzeuge</h1>
           <p className="text-sm text-gray-500 mt-1">{count} {count === 1 ? "Eintrag" : "Einträge"} — lokal auf diesem Gerät gespeichert.</p>
         </div>

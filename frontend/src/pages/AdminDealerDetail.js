@@ -61,22 +61,22 @@ export default function AdminDealerDetail() {
 
   return (
     <div className="container-x py-10">
-      <button onClick={() => nav("/admin")} data-testid="back-to-admin" className="inline-flex items-center gap-2 text-xs text-gray-500 hover:text-[#E63946] mb-6">
+      <button onClick={() => nav("/admin")} data-testid="back-to-admin" className="inline-flex items-center gap-2 text-xs text-gray-500 hover:text-[#16A34A] mb-6">
         <ArrowLeft className="w-3.5 h-3.5" /> Admin-Übersicht
       </button>
 
       {/* Header */}
       <div className="flex flex-wrap items-start justify-between gap-6 mb-10">
         <div>
-          <div className="swiss-label text-[#E63946]">Händler-Detail</div>
+          <div className="swiss-label text-[#16A34A]">Händler-Detail</div>
           <h1 className="font-display text-3xl md:text-4xl font-bold tracking-tight mt-2" data-testid="admin-dealer-name">
             {dealer.company || dealer.name}
           </h1>
           <div className="flex flex-wrap items-center gap-x-5 gap-y-2 mt-4 text-sm text-gray-600">
-            <span className="flex items-center gap-1.5"><Building2 className="w-4 h-4 text-[#E63946]" /> {dealer.name}</span>
-            <span className="flex items-center gap-1.5"><Mail className="w-4 h-4 text-[#E63946]" /> {dealer.email}</span>
-            {dealer.phone && <span className="flex items-center gap-1.5"><Phone className="w-4 h-4 text-[#E63946]" /> {dealer.phone}</span>}
-            <span className="flex items-center gap-1.5"><Calendar className="w-4 h-4 text-[#E63946]" /> {new Date(dealer.created_at).toLocaleDateString("de-DE")}</span>
+            <span className="flex items-center gap-1.5"><Building2 className="w-4 h-4 text-[#16A34A]" /> {dealer.name}</span>
+            <span className="flex items-center gap-1.5"><Mail className="w-4 h-4 text-[#16A34A]" /> {dealer.email}</span>
+            {dealer.phone && <span className="flex items-center gap-1.5"><Phone className="w-4 h-4 text-[#16A34A]" /> {dealer.phone}</span>}
+            <span className="flex items-center gap-1.5"><Calendar className="w-4 h-4 text-[#16A34A]" /> {new Date(dealer.created_at).toLocaleDateString("de-DE")}</span>
             <StatusBadge status={dealer.status} />
           </div>
         </div>
@@ -132,7 +132,7 @@ export default function AdminDealerDetail() {
                           {v.images?.[0] ? <img src={imgUrl(v.images[0])} alt="" className="w-full h-full object-cover" /> : <ImagePlaceholder size="sm" />}
                         </div>
                         <div className="min-w-0">
-                          <div className="font-semibold group-hover:text-[#E63946] transition-colors truncate">{v.title}</div>
+                          <div className="font-semibold group-hover:text-[#16A34A] transition-colors truncate">{v.title}</div>
                           <div className="text-xs text-gray-500">{v.brand} {v.model} · {v.year}</div>
                         </div>
                       </Link>
@@ -168,7 +168,7 @@ export default function AdminDealerDetail() {
                   <div>
                     <div className="flex items-center gap-1">
                       {[1,2,3,4,5].map(i => (
-                        <Star key={i} className={`w-4 h-4 ${i <= r.rating ? "fill-[#E63946] text-[#E63946]" : "text-gray-300"}`} />
+                        <Star key={i} className={`w-4 h-4 ${i <= r.rating ? "fill-[#16A34A] text-[#16A34A]" : "text-gray-300"}`} />
                       ))}
                     </div>
                     <div className="font-semibold mt-2">{r.name}</div>
@@ -190,12 +190,12 @@ export default function AdminDealerDetail() {
 
 function Kpi({ icon: Icon, label, value, sub, highlight, accent }) {
   return (
-    <div className={`swiss-card p-5 ${highlight ? "border-[#E63946] border-2" : ""}`}>
+    <div className={`swiss-card p-5 ${highlight ? "border-[#16A34A] border-2" : ""}`}>
       <div className="flex items-center justify-between">
         <div className="swiss-label text-gray-500">{label}</div>
         <Icon className="w-4 h-4 text-gray-400" />
       </div>
-      <div className={`font-display text-3xl font-extrabold mt-3 ${accent ? "text-[#E63946]" : ""}`}>{value}</div>
+      <div className={`font-display text-3xl font-extrabold mt-3 ${accent ? "text-[#16A34A]" : ""}`}>{value}</div>
       {sub && <div className="text-xs text-gray-500 mt-1">{sub}</div>}
     </div>
   );

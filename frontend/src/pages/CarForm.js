@@ -125,7 +125,7 @@ export default function CarForm() {
   return (
     <form onSubmit={submit} className="space-y-8 max-w-4xl">
       <div className="swiss-card p-6">
-        <h3 className="swiss-label text-[#E63946] mb-4">Grunddaten</h3>
+        <h3 className="swiss-label text-[#16A34A] mb-4">Grunddaten</h3>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <F label="Inserats-Titel *"><input required data-testid="vf-title" value={form.title} onChange={e=>upd("title", e.target.value)} className={inp} /></F>
           <F label="Marke *"><input required data-testid="vf-brand" value={form.brand} onChange={e=>upd("brand", e.target.value)} className={inp} /></F>
@@ -150,7 +150,7 @@ export default function CarForm() {
 
       <div className="swiss-card p-6">
         <div className="flex items-center justify-between mb-4">
-          <h3 className="swiss-label text-[#E63946]">Bilder</h3>
+          <h3 className="swiss-label text-[#16A34A]">Bilder</h3>
           <button type="button" data-testid="vf-upload-btn" onClick={() => fileRef.current?.click()} className="swiss-btn-secondary text-sm py-2 px-4">
             <Upload className="w-4 h-4" /> Bilder hochladen
           </button>
@@ -163,7 +163,7 @@ export default function CarForm() {
             {form.images.map((p, i) => (
               <div key={p+i} className="relative aspect-[4/3] bg-gray-100 group">
                 <img src={imgUrl(p)} alt="" className="w-full h-full object-cover" />
-                <button type="button" onClick={() => removeImage(p)} data-testid={`vf-remove-img-${i}`} className="absolute top-1 right-1 bg-white text-[#E63946] p-1 opacity-0 group-hover:opacity-100"><X className="w-4 h-4" /></button>
+                <button type="button" onClick={() => removeImage(p)} data-testid={`vf-remove-img-${i}`} className="absolute top-1 right-1 bg-white text-[#16A34A] p-1 opacity-0 group-hover:opacity-100"><X className="w-4 h-4" /></button>
               </div>
             ))}
           </div>
@@ -172,12 +172,12 @@ export default function CarForm() {
 
       <div className="swiss-card p-6">
         <div className="flex items-center justify-between mb-4">
-          <h3 className="swiss-label text-[#E63946]">Beschreibung</h3>
+          <h3 className="swiss-label text-[#16A34A]">Beschreibung</h3>
           <button type="button" disabled={aiBusy} data-testid="vf-ai-btn" onClick={generateAI} className="swiss-btn-primary text-sm py-2 px-4">
             {aiBusy ? <Loader2 className="w-4 h-4 animate-spin" /> : <Sparkles className="w-4 h-4" />} {aiBusy ? "Generiere…" : "KI-Beschreibung generieren"}
           </button>
         </div>
-        <textarea required data-testid="vf-description" value={form.description} onChange={e=>upd("description", e.target.value)} rows={10} className="w-full border border-gray-200 p-4 outline-none focus:border-[#E63946] text-sm leading-relaxed" placeholder="Beschreibung deines Fahrzeugs…" />
+        <textarea required data-testid="vf-description" value={form.description} onChange={e=>upd("description", e.target.value)} rows={10} className="w-full border border-gray-200 p-4 outline-none focus:border-[#16A34A] text-sm leading-relaxed" placeholder="Beschreibung deines Fahrzeugs…" />
       </div>
 
       {error && <div data-testid="vf-error" className="text-sm text-red-600 bg-red-50 border border-red-200 p-3">{error}</div>}
@@ -192,7 +192,7 @@ export default function CarForm() {
   );
 }
 
-const inp = "w-full mt-2 border border-gray-200 py-2.5 px-3 outline-none focus:border-[#E63946] text-sm";
+const inp = "w-full mt-2 border border-gray-200 py-2.5 px-3 outline-none focus:border-[#16A34A] text-sm";
 function F({ label, children }) {
   return <div><label className="swiss-label">{label}</label>{children}</div>;
 }

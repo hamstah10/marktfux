@@ -46,7 +46,7 @@ export default function CarDetail() {
 
   return (
     <div className="container-x py-8">
-      <Link to="/fahrzeuge" className="inline-flex items-center gap-2 text-sm text-gray-600 hover:text-[#E63946] mb-6">
+      <Link to="/fahrzeuge" className="inline-flex items-center gap-2 text-sm text-gray-600 hover:text-[#16A34A] mb-6">
         <ArrowLeft className="w-4 h-4" /> Zurück zur Übersicht
       </Link>
 
@@ -63,7 +63,7 @@ export default function CarDetail() {
               onClick={() => toggle(v.id)}
               data-testid="detail-fav-btn"
               aria-label={isFav(v.id) ? "Aus Merkliste entfernen" : "Zur Merkliste hinzufügen"}
-              className={`absolute top-4 right-4 inline-flex items-center gap-2 px-4 h-11 text-sm font-semibold transition-all ${isFav(v.id) ? "bg-[#E63946] text-white" : "bg-white/95 text-gray-800 hover:bg-white"}`}
+              className={`absolute top-4 right-4 inline-flex items-center gap-2 px-4 h-11 text-sm font-semibold transition-all ${isFav(v.id) ? "bg-[#16A34A] text-white" : "bg-white/95 text-gray-800 hover:bg-white"}`}
             >
               <Heart className="w-4 h-4" fill={isFav(v.id) ? "currentColor" : "none"} />
               {isFav(v.id) ? "Gemerkt" : "Merken"}
@@ -72,7 +72,7 @@ export default function CarDetail() {
           {images.length > 1 && (
             <div className="grid grid-cols-6 gap-2 mt-2">
               {images.map((p, i) => (
-                <button key={i} onClick={() => setActive(i)} className={`aspect-[4/3] overflow-hidden border-2 ${active === i ? "border-[#E63946]" : "border-transparent"}`}>
+                <button key={i} onClick={() => setActive(i)} className={`aspect-[4/3] overflow-hidden border-2 ${active === i ? "border-[#16A34A]" : "border-transparent"}`}>
                   <img src={imgUrl(p)} alt="" className="w-full h-full object-cover" />
                 </button>
               ))}
@@ -80,7 +80,7 @@ export default function CarDetail() {
           )}
 
           <div className="mt-10">
-            <div className="swiss-label text-[#E63946]">{v.brand} · {v.year}</div>
+            <div className="swiss-label text-[#16A34A]">{v.brand} · {v.year}</div>
             <h1 className="font-display text-3xl md:text-4xl font-bold tracking-tight mt-2">{v.title}</h1>
 
             <div className="grid grid-cols-2 md:grid-cols-3 gap-x-8 gap-y-5 mt-8 swiss-card p-6">
@@ -108,15 +108,15 @@ export default function CarDetail() {
             </div>
 
             {v.dealer && (
-              <Link to={`/haendler/${v.dealer.id}`} data-testid="vehicle-dealer-link" className="swiss-card p-6 mt-3 block hover:border-[#E63946] transition-colors group">
+              <Link to={`/haendler/${v.dealer.id}`} data-testid="vehicle-dealer-link" className="swiss-card p-6 mt-3 block hover:border-[#16A34A] transition-colors group">
                 <div className="flex items-start justify-between gap-3">
                   <div className="min-w-0">
                     <div className="swiss-label text-gray-500">Händler</div>
-                    <div className="font-semibold text-base mt-2 flex items-center gap-2"><Building2 className="w-4 h-4 text-[#E63946]" /> {v.dealer.company || v.dealer.name}</div>
+                    <div className="font-semibold text-base mt-2 flex items-center gap-2"><Building2 className="w-4 h-4 text-[#16A34A]" /> {v.dealer.company || v.dealer.name}</div>
                     {v.dealer.phone && <div className="text-sm text-gray-600 mt-1 flex items-center gap-2"><Phone className="w-4 h-4" /> {v.dealer.phone}</div>}
                     <div className="text-sm text-gray-500 mt-1">{v.location}</div>
                   </div>
-                  <span className="swiss-label text-gray-400 group-hover:text-[#E63946] transition-colors">Profil →</span>
+                  <span className="swiss-label text-gray-400 group-hover:text-[#16A34A] transition-colors">Profil →</span>
                 </div>
               </Link>
             )}
@@ -130,10 +130,10 @@ export default function CarDetail() {
                 </div>
               ) : (
                 <form onSubmit={submit} className="space-y-3">
-                  <input required data-testid="inquiry-name" value={form.name} onChange={(e) => setForm({...form, name: e.target.value})} placeholder="Dein Name *" className="w-full border border-gray-200 py-2.5 px-3 text-sm focus:border-[#E63946] outline-none" />
-                  <input required type="email" data-testid="inquiry-email" value={form.email} onChange={(e) => setForm({...form, email: e.target.value})} placeholder="E-Mail *" className="w-full border border-gray-200 py-2.5 px-3 text-sm focus:border-[#E63946] outline-none" />
-                  <input data-testid="inquiry-phone" value={form.phone} onChange={(e) => setForm({...form, phone: e.target.value})} placeholder="Telefon (optional)" className="w-full border border-gray-200 py-2.5 px-3 text-sm focus:border-[#E63946] outline-none" />
-                  <textarea required data-testid="inquiry-message" value={form.message} onChange={(e) => setForm({...form, message: e.target.value})} rows={5} className="w-full border border-gray-200 py-2.5 px-3 text-sm focus:border-[#E63946] outline-none" />
+                  <input required data-testid="inquiry-name" value={form.name} onChange={(e) => setForm({...form, name: e.target.value})} placeholder="Dein Name *" className="w-full border border-gray-200 py-2.5 px-3 text-sm focus:border-[#16A34A] outline-none" />
+                  <input required type="email" data-testid="inquiry-email" value={form.email} onChange={(e) => setForm({...form, email: e.target.value})} placeholder="E-Mail *" className="w-full border border-gray-200 py-2.5 px-3 text-sm focus:border-[#16A34A] outline-none" />
+                  <input data-testid="inquiry-phone" value={form.phone} onChange={(e) => setForm({...form, phone: e.target.value})} placeholder="Telefon (optional)" className="w-full border border-gray-200 py-2.5 px-3 text-sm focus:border-[#16A34A] outline-none" />
+                  <textarea required data-testid="inquiry-message" value={form.message} onChange={(e) => setForm({...form, message: e.target.value})} rows={5} className="w-full border border-gray-200 py-2.5 px-3 text-sm focus:border-[#16A34A] outline-none" />
                   <button data-testid="inquiry-submit" disabled={sending} className="swiss-btn-primary w-full">{sending ? "Senden…" : "Anfrage abschicken"}</button>
                 </form>
               )}
