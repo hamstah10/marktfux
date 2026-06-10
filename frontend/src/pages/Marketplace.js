@@ -2,6 +2,7 @@ import React, { useEffect, useMemo, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { api } from "@/lib/api";
 import CarCard from "@/components/CarCard";
+import { StaggerItem } from "@/components/Motion";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { SlidersHorizontal, Search, ChevronLeft, ChevronRight } from "lucide-react";
 
@@ -185,7 +186,11 @@ export default function Marketplace() {
           ) : (
             <>
               <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6">
-                {items.map(v => <CarCard key={v.id} v={v} />)}
+                {items.map((v, i) => (
+                  <StaggerItem key={v.id} index={i}>
+                    <CarCard v={v} />
+                  </StaggerItem>
+                ))}
               </div>
               {totalPages > 1 && <Pagination page={page} totalPages={totalPages} onChange={setPage} />}
             </>
