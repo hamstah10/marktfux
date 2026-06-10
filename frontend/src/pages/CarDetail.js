@@ -50,9 +50,9 @@ export default function CarDetail() {
         <ArrowLeft className="w-4 h-4" /> Zurück zur Übersicht
       </Link>
 
-      <div className="grid lg:grid-cols-[1fr_400px] gap-10">
+      <div className="grid lg:grid-cols-[minmax(0,1fr)_380px] xl:grid-cols-[minmax(0,1fr)_400px] gap-6 lg:gap-10">
         {/* Left — gallery + details */}
-        <div>
+        <div className="min-w-0">
           <div className="aspect-[16/10] bg-gray-100 overflow-hidden relative">
             {images[active] ? (
               <img src={imgUrl(images[active])} alt={v.title} className="w-full h-full object-cover" data-testid="vehicle-main-image" />
@@ -63,14 +63,14 @@ export default function CarDetail() {
               onClick={() => toggle(v.id)}
               data-testid="detail-fav-btn"
               aria-label={isFav(v.id) ? "Aus Merkliste entfernen" : "Zur Merkliste hinzufügen"}
-              className={`absolute top-4 right-4 inline-flex items-center gap-2 px-4 h-11 text-sm font-semibold transition-all ${isFav(v.id) ? "bg-[#16A34A] text-white" : "bg-white/95 text-gray-800 hover:bg-white"}`}
+              className={`absolute top-3 right-3 md:top-4 md:right-4 inline-flex items-center gap-1.5 px-2.5 h-9 md:px-4 md:h-11 text-xs md:text-sm font-semibold transition-all ${isFav(v.id) ? "bg-[#16A34A] text-white" : "bg-white/95 text-gray-800 hover:bg-white"}`}
             >
               <Heart className="w-4 h-4" fill={isFav(v.id) ? "currentColor" : "none"} />
-              {isFav(v.id) ? "Gemerkt" : "Merken"}
+              <span className="hidden sm:inline">{isFav(v.id) ? "Gemerkt" : "Merken"}</span>
             </button>
           </div>
           {images.length > 1 && (
-            <div className="grid grid-cols-6 gap-2 mt-2">
+            <div className="grid grid-cols-4 sm:grid-cols-5 md:grid-cols-6 gap-2 mt-2">
               {images.map((p, i) => (
                 <button key={i} onClick={() => setActive(i)} className={`aspect-[4/3] overflow-hidden border-2 ${active === i ? "border-[#16A34A]" : "border-transparent"}`}>
                   <img src={imgUrl(p)} alt="" className="w-full h-full object-cover" />
@@ -79,11 +79,11 @@ export default function CarDetail() {
             </div>
           )}
 
-          <div className="mt-10">
+          <div className="mt-8 md:mt-10">
             <div className="swiss-label text-[#16A34A]">{v.brand} · {v.year}</div>
-            <h1 className="font-display text-3xl md:text-4xl font-bold tracking-tight mt-2">{v.title}</h1>
+            <h1 className="font-display text-2xl md:text-3xl lg:text-4xl font-bold tracking-tight mt-2 break-words">{v.title}</h1>
 
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-x-8 gap-y-5 mt-8 swiss-card p-6">
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-x-4 sm:gap-x-6 md:gap-x-8 gap-y-5 mt-6 md:mt-8 swiss-card p-5 md:p-6">
               <Spec icon={Calendar} label="Erstzulassung" val={v.year} />
               <Spec icon={Gauge} label="Kilometerstand" val={fmtKm(v.mileage)} />
               <Spec icon={Fuel} label="Kraftstoff" val={v.fuel} />
@@ -92,9 +92,9 @@ export default function CarDetail() {
               <Spec icon={MapPin} label="Standort" val={v.location || "—"} />
             </div>
 
-            <div className="mt-10">
-              <h2 className="font-display text-2xl font-bold tracking-tight">Beschreibung</h2>
-              <div className="prose prose-sm max-w-none mt-4 text-gray-700 whitespace-pre-wrap leading-relaxed">{v.description}</div>
+            <div className="mt-8 md:mt-10">
+              <h2 className="font-display text-xl md:text-2xl font-bold tracking-tight">Beschreibung</h2>
+              <div className="prose prose-sm max-w-none mt-3 md:mt-4 text-gray-700 whitespace-pre-wrap leading-relaxed break-words">{v.description}</div>
             </div>
           </div>
         </div>
@@ -102,8 +102,8 @@ export default function CarDetail() {
         {/* Right — sticky sidebar */}
         <aside>
           <div className="md:sticky md:top-6">
-            <div className="swiss-card p-6">
-              <div className="text-4xl font-display font-extrabold">{fmtPrice(v.price)}</div>
+            <div className="swiss-card p-5 md:p-6">
+              <div className="text-3xl md:text-4xl font-display font-extrabold break-words">{fmtPrice(v.price)}</div>
               <p className="text-xs text-gray-500 mt-1">inkl. MwSt. ausweisbar (sofern zutreffend)</p>
             </div>
 
