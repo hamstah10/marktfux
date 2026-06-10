@@ -3,38 +3,38 @@ import Logo from "./Logo";
 
 export default function Footer() {
   return (
-    <footer className="bg-[#0A0A0A] text-white mt-24">
-      <div className="container-x py-12 grid grid-cols-1 md:grid-cols-4 gap-10">
+    <footer className="bg-[var(--card)] border-t border-[var(--hairline)] mt-20">
+      <div className="container-x py-14 grid grid-cols-1 md:grid-cols-4 gap-10">
         <div>
-          <Logo size="md" inverted />
-          <p className="text-sm text-gray-400 mt-4 leading-relaxed">Die fokussierte Plattform für seriöse Autohändler und Käufer im deutschsprachigen Raum.</p>
+          <Logo size="md" />
+          <p className="text-sm text-[var(--fg2)] mt-4 leading-relaxed max-w-xs">Vertrauensvoller Marktplatz für Gebrauchtwagen — von Privat und vom Händler.</p>
         </div>
         <div>
-          <div className="swiss-label text-gray-400 mb-3">Plattform</div>
-          <ul className="space-y-2 text-sm text-gray-300">
-            <li>Fahrzeuge</li>
-            <li>Händler werden</li>
-            <li>Über uns</li>
+          <div className="swiss-label mb-3">Marktplatz</div>
+          <ul className="space-y-2 text-sm text-[var(--fg2)]">
+            <li>Fahrzeuge suchen</li>
+            <li>Inserat aufgeben</li>
+            <li>Händlerkonto</li>
           </ul>
         </div>
         <div>
-          <div className="swiss-label text-gray-400 mb-3">Rechtliches</div>
-          <ul className="space-y-2 text-sm text-gray-300">
+          <div className="swiss-label mb-3">Rechtliches</div>
+          <ul className="space-y-2 text-sm text-[var(--fg2)]">
             <li>Impressum</li>
             <li>Datenschutz</li>
             <li>AGB</li>
           </ul>
         </div>
         <div>
-          <div className="swiss-label text-gray-400 mb-3">Kontakt</div>
-          <ul className="space-y-2 text-sm text-gray-300">
+          <div className="swiss-label mb-3">Kontakt</div>
+          <ul className="space-y-2 text-sm text-[var(--fg2)]">
             <li>hallo@marktfux.de</li>
             <li>+49 30 1234 5678</li>
           </ul>
         </div>
       </div>
-      <div className="border-t border-gray-800 py-6 text-center text-xs text-gray-500">
-        © {new Date().getFullYear()} marktFUX — Alle Rechte vorbehalten.
+      <div className="border-t border-[var(--hairline)] py-5 text-center text-xs text-[var(--fg3)] font-mono tracking-wider">
+        © {new Date().getFullYear()} marktFUX · Alle Rechte vorbehalten
       </div>
     </footer>
   );

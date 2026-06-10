@@ -1,22 +1,31 @@
 import React from "react";
 
 /**
- * marktFUX official logo (with transparent background).
- * Use `inverted={false}` (default) on light backgrounds — the dark "markt" text + green icon + green "FUX" stay visible.
- * Use `inverted={true}` on dark backgrounds — same image works, since the cut-out background is fully transparent.
+ * marktFUX wordmark in Orbitron 800 with double-rhombus mark.
+ * Matches the UI-Kit / Prototype design specification.
  */
 export default function Logo({ size = "md", className = "", inverted = false }) {
-  const heights = { sm: 24, md: 36, lg: 56, xl: 80 };
-  const h = heights[size] || heights.md;
+  const sizes = { sm: { icon: 22, text: "text-base" }, md: { icon: 28, text: "text-2xl" }, lg: { icon: 38, text: "text-3xl" } };
+  const s = sizes[size] || sizes.md;
+  const darkColor = inverted ? "text-white" : "text-[var(--fg1)]";
 
   return (
-    <img
-      src="/marktfux-logo.png"
-      alt="marktFUX"
-      height={h}
-      style={{ height: h, width: "auto", display: "block" }}
-      className={`select-none ${inverted ? "" : ""} ${className}`}
-      draggable={false}
-    />
+    <span className={`inline-flex items-center gap-2.5 ${className}`} aria-label="marktFUX">
+      <Mark height={s.icon} />
+      <span className={`font-brand leading-none ${s.text}`}>
+        <span className={darkColor}>markt</span>
+        <span className="text-[var(--green)]">FUX</span>
+      </span>
+    </span>
+  );
+}
+
+function Mark({ height = 28 }) {
+  const w = (height * 22) / 32;
+  return (
+    <svg viewBox="0 0 22 32" height={height} width={w} fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <path d="M11 0 L22 8 L11 16 L0 8 Z" fill="#239a5f" />
+      <path d="M11 16 L22 24 L11 32 L0 24 Z" fill="#239a5f" opacity="0.85" />
+    </svg>
   );
 }
