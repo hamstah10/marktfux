@@ -48,12 +48,12 @@
     --font-body: 'Inter', system-ui, sans-serif;
     --font-mono: 'JetBrains Mono', ui-monospace, monospace;
 
-    /* === Radii === */
-    --radius-sm: 6px;
-    --radius-md: 10px;
-    --radius-lg: 14px;
-    --radius-xl: 20px;
-    --radius-pill: 999px;
+    /* === Radii (all sharp — no border-radius) === */
+    --radius-sm: 0;
+    --radius-md: 0;
+    --radius-lg: 0;
+    --radius-xl: 0;
+    --radius-pill: 0;
 
     /* === Shadows === */
     --shadow-sm: 0 1px 2px hsla(216, 28%, 14%, 0.04);
@@ -88,7 +88,7 @@
         --border: 210 16% 90%;
         --input: 210 16% 90%;
         --ring: 150 64% 37%;
-        --radius: 10px;
+        --radius: 0;
     }
 }
 

@@ -47,7 +47,7 @@ export default function CarCard({ v }) {
       <Link
         to={`/fahrzeuge/${v.id}`}
         data-testid={`car-card-${v.id}`}
-        className="block bg-[var(--card)] border border-[var(--hairline)] rounded-[var(--radius-lg)] overflow-hidden shadow-[var(--shadow-card)] hover:shadow-[var(--shadow-elevated)] transition-shadow"
+        className="block bg-[var(--card)] border border-[var(--hairline)]-[var(--radius-lg)] overflow-hidden shadow-[var(--shadow-card)] hover:shadow-[var(--shadow-elevated)] transition-shadow"
       >
         {/* Photo area */}
         <div className="relative h-[190px] overflow-hidden" style={{ background: img ? "#f3f4f6" : g.bg }}>
@@ -65,7 +65,7 @@ export default function CarCard({ v }) {
                   <circle cx="7" cy="17" r="2" /><path d="M9 17h6" /><circle cx="17" cy="17" r="2" />
                 </svg>
               </div>
-              <span className="absolute top-2.5 left-2.5 font-mono text-[9px] font-semibold tracking-[0.1em] px-1.5 py-0.5 rounded bg-white/60 backdrop-blur" style={{ color: g.tagFg }}>FOTO</span>
+              <span className="absolute top-2.5 left-2.5 font-mono text-[9px] font-semibold tracking-[0.1em] px-1.5 py-0.5 bg-white/60 backdrop-blur" style={{ color: g.tagFg }}>FOTO</span>
               <span className="absolute bottom-2.5 left-2.5 font-display text-xs font-semibold" style={{ color: g.brandFg }}>{v.brand} {v.model}</span>
             </>
           )}
@@ -74,7 +74,7 @@ export default function CarCard({ v }) {
           <button
             onClick={onFav}
             data-testid={`fav-btn-${v.id}`}
-            className={`absolute top-2.5 right-2.5 w-9 h-9 rounded-full backdrop-blur flex items-center justify-center transition ${fav ? "bg-[var(--green)] text-white" : "bg-white/85 text-[var(--fg2)] hover:text-[var(--fg1)]"}`}
+            className={`absolute top-2.5 right-2.5 w-9 h-9 backdrop-blur flex items-center justify-center transition ${fav ? "bg-[var(--green)] text-white" : "bg-white/85 text-[var(--fg2)] hover:text-[var(--fg1)]"}`}
             aria-label={fav ? "Aus Merkliste entfernen" : "Merken"}
           >
             <Heart className="w-[18px] h-[18px]" fill={fav ? "currentColor" : "none"} />
@@ -84,7 +84,7 @@ export default function CarCard({ v }) {
           <button
             onClick={onCmp}
             data-testid={`compare-btn-${v.id}`}
-            className={`absolute top-[55px] right-2.5 w-9 h-9 rounded-full backdrop-blur flex items-center justify-center transition ${inCmp ? "bg-[var(--fg1)] text-white" : "bg-white/85 text-[var(--fg2)] hover:text-[var(--fg1)]"}`}
+            className={`absolute top-[55px] right-2.5 w-9 h-9 backdrop-blur flex items-center justify-center transition ${inCmp ? "bg-[var(--fg1)] text-white" : "bg-white/85 text-[var(--fg2)] hover:text-[var(--fg1)]"}`}
             aria-label={inCmp ? "Aus Vergleich entfernen" : "Zum Vergleich"}
           >
             <GitCompareArrows className="w-[18px] h-[18px]" />
@@ -128,7 +128,7 @@ export default function CarCard({ v }) {
                 <span className="font-body text-xs text-[var(--fg3)]">{v.location || "—"}</span>
               </div>
             </div>
-            <span className="inline-flex items-center justify-center w-[38px] h-[38px] rounded-[var(--radius-md)] bg-[var(--green-subtle)] text-[var(--green)]">
+            <span className="inline-flex items-center justify-center w-[38px] h-[38px]-[var(--radius-md)] bg-[var(--green-subtle)] text-[var(--green)]">
               <ArrowRight className="w-[18px] h-[18px]" />
             </span>
           </div>

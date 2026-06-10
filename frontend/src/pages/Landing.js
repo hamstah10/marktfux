@@ -44,7 +44,7 @@ export default function Landing() {
         <div className="page-wrap max-w-[980px] pt-16 md:pt-20 pb-12 md:pb-16 text-center">
           <motion.span
             initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, ease }}
-            className="inline-flex items-center gap-1.5 font-mono text-xs font-semibold text-[var(--green)] bg-[var(--green-subtle)] border border-[var(--green-border)] px-3.5 py-1.5 rounded-full tracking-[0.04em]"
+            className="inline-flex items-center gap-1.5 font-mono text-xs font-semibold text-[var(--green)] bg-[var(--green-subtle)] border border-[var(--green-border)] px-3.5 py-1.5 tracking-[0.04em]"
           >
             <ShieldCheck className="w-3.5 h-3.5" /> Geprüfte Sicherheit · Vertrauen seit Tag 1
           </motion.span>
@@ -69,7 +69,7 @@ export default function Landing() {
           <motion.form
             onSubmit={onSearch}
             initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.25, ease }}
-            className="bg-[var(--card)] border border-[var(--hairline)] rounded-[var(--radius-lg)] p-2.5 flex flex-col sm:flex-row gap-2 items-stretch max-w-[720px] mx-auto"
+            className="bg-[var(--card)] border border-[var(--hairline)]-[var(--radius-lg)] p-2.5 flex flex-col sm:flex-row gap-2 items-stretch max-w-[720px] mx-auto"
             style={{ boxShadow: "var(--shadow-elevated)" }}
           >
             <div className="flex-[2] flex items-center gap-2.5 px-3.5">
@@ -107,7 +107,7 @@ export default function Landing() {
           >
             <span className="font-body text-[13px] text-[var(--fg3)] self-center mr-1">Beliebt:</span>
             {POPULAR_BRANDS.map((b) => (
-              <button key={b} onClick={() => nav(`/fahrzeuge?brand=${encodeURIComponent(b === "Mercedes-Benz" ? "Mercedes" : b)}`)} className="font-body text-[13px] font-medium text-[var(--fg2)] bg-[var(--card)] border border-[var(--hairline)] rounded-full px-3.5 py-1.5 hover:border-[var(--green)] hover:text-[var(--green)] transition-colors">
+              <button key={b} onClick={() => nav(`/fahrzeuge?brand=${encodeURIComponent(b === "Mercedes-Benz" ? "Mercedes" : b)}`)} className="font-body text-[13px] font-medium text-[var(--fg2)] bg-[var(--card)] border border-[var(--hairline)] px-3.5 py-1.5 hover:border-[var(--green)] hover:text-[var(--green)] transition-colors">
                 {b}
               </button>
             ))}
@@ -155,10 +155,10 @@ export default function Landing() {
             <Reveal key={c.name} delay={i * 0.04}>
               <button
                 onClick={() => nav(`/fahrzeuge`)}
-                className="w-full flex items-center justify-between gap-3.5 bg-[var(--card)] border border-[var(--hairline)] rounded-[var(--radius-lg)] py-5 px-5 cursor-pointer text-left shadow-[var(--shadow-sm)] hover:shadow-[var(--shadow-card)] hover:-translate-y-0.5 transition-all"
+                className="w-full flex items-center justify-between gap-3.5 bg-[var(--card)] border border-[var(--hairline)]-[var(--radius-lg)] py-5 px-5 cursor-pointer text-left shadow-[var(--shadow-sm)] hover:shadow-[var(--shadow-card)] hover:-translate-y-0.5 transition-all"
               >
                 <div className="flex items-center gap-3.5">
-                  <span className="w-11 h-11 rounded-xl bg-[var(--green-subtle)] text-[var(--green)] flex items-center justify-center flex-shrink-0">
+                  <span className="w-11 h-11 bg-[var(--green-subtle)] text-[var(--green)] flex items-center justify-center flex-shrink-0">
                     <Car className="w-6 h-6" />
                   </span>
                   <div>
@@ -183,8 +183,8 @@ export default function Landing() {
         </Reveal>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
           <Reveal delay={0.05}>
-            <div className="flex gap-4 items-center bg-[var(--card)] border border-[var(--hairline)] rounded-[var(--radius-xl)] shadow-[var(--shadow-card)] p-7">
-              <div className="w-14 h-14 rounded-2xl bg-[var(--private-tint)] text-[var(--private-fg)] flex items-center justify-center flex-shrink-0">
+            <div className="flex gap-4 items-center bg-[var(--card)] border border-[var(--hairline)]-[var(--radius-xl)] shadow-[var(--shadow-card)] p-7">
+              <div className="w-14 h-14 bg-[var(--private-tint)] text-[var(--private-fg)] flex items-center justify-center flex-shrink-0">
                 <User className="w-7 h-7" />
               </div>
               <div className="flex-1">
@@ -196,8 +196,8 @@ export default function Landing() {
             </div>
           </Reveal>
           <Reveal delay={0.1}>
-            <div className="flex gap-4 items-center bg-[var(--card)] border border-[var(--hairline)] rounded-[var(--radius-xl)] shadow-[var(--shadow-card)] p-7">
-              <div className="w-14 h-14 rounded-2xl bg-[var(--green-subtle)] text-[var(--green)] flex items-center justify-center flex-shrink-0">
+            <div className="flex gap-4 items-center bg-[var(--card)] border border-[var(--hairline)]-[var(--radius-xl)] shadow-[var(--shadow-card)] p-7">
+              <div className="w-14 h-14 bg-[var(--green-subtle)] text-[var(--green)] flex items-center justify-center flex-shrink-0">
                 <Store className="w-7 h-7" />
               </div>
               <div className="flex-1">
@@ -226,9 +226,9 @@ export default function Landing() {
             ].map((s, i) => (
               <Reveal key={i} delay={i * 0.1}>
                 <div className="text-center">
-                  <div className="relative w-16 h-16 rounded-[18px] bg-[var(--green-subtle)] text-[var(--green)] flex items-center justify-center mx-auto mb-4">
+                  <div className="relative w-16 h-16-[18px] bg-[var(--green-subtle)] text-[var(--green)] flex items-center justify-center mx-auto mb-4">
                     <s.icon className="w-[30px] h-[30px]" />
-                    <span className="absolute -top-2 -right-2 w-[26px] h-[26px] rounded-full bg-[var(--green)] text-white font-display font-bold text-[13px] flex items-center justify-center">{s.n}</span>
+                    <span className="absolute -top-2 -right-2 w-[26px] h-[26px] bg-[var(--green)] text-white font-display font-bold text-[13px] flex items-center justify-center">{s.n}</span>
                   </div>
                   <div className="font-display font-bold text-[19px] text-[var(--fg1)] mb-2">{s.h}</div>
                   <p className="font-body text-[14.5px] text-[var(--fg2)] leading-[1.6] max-w-[280px] mx-auto">{s.d}</p>
