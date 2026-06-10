@@ -28,7 +28,7 @@ export default function Login() {
   };
 
   return (
-    <div className="container-x py-20 max-w-md">
+    <div className="page-wrap py-20 max-w-md">
       <div className="swiss-label text-[#16A34A]">Login</div>
       <h1 className="font-display text-3xl font-bold tracking-tight mt-2">Willkommen zurück</h1>
       <p className="text-gray-500 mt-2 text-sm">Melde dich an, um Inserate zu verwalten.</p>

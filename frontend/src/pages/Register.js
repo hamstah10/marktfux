@@ -26,7 +26,7 @@ export default function Register() {
   };
 
   return (
-    <div className="container-x py-20 max-w-xl">
+    <div className="page-wrap py-20 max-w-xl">
       <div className="swiss-label text-[#16A34A]">Händler werden</div>
       <h1 className="font-display text-3xl font-bold tracking-tight mt-2">Neues Händler-Konto</h1>
       <p className="text-gray-500 mt-2 text-sm">Nach der Registrierung prüft unser Admin-Team dein Konto und schaltet es frei.</p>

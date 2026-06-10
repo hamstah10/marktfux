@@ -47,7 +47,7 @@ export default function Compare() {
   };
 
   return (
-    <div className="container-x py-10">
+    <div className="page-wrap py-10">
       <div className="flex flex-wrap items-end justify-between gap-4 mb-8">
         <div>
           <Link to="/fahrzeuge" className="inline-flex items-center gap-2 text-xs text-gray-500 hover:text-[#16A34A] mb-3">

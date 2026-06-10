@@ -14,7 +14,7 @@ export default function DealerLayout() {
   }, [loc.pathname]);
 
   return (
-    <div className="container-x py-10">
+    <div className="page-wrap py-10">
       <div className="flex items-end justify-between mb-8">
         <div>
           <div className="swiss-label text-[#16A34A]">Händler-Dashboard</div>

@@ -70,7 +70,7 @@ export default function Marketplace() {
   const showingTo = Math.min(page * PAGE_SIZE, total);
 
   return (
-    <div className="container-x py-10">
+    <div className="page-wrap py-10">
       <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-8">
         <div>
           <div className="swiss-label text-[#16A34A]">Marktplatz</div>

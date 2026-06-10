@@ -31,14 +31,14 @@ export default function AdminVehicleDetail() {
     } catch (e) { toast.error(formatApiError(e.response?.data?.detail)); }
   };
 
-  if (data === false) return <div className="container-x py-20 text-center text-gray-500">Fahrzeug nicht gefunden.</div>;
-  if (!data) return <div className="container-x py-20 text-center text-gray-500">Lade…</div>;
+  if (data === false) return <div className="page-wrap py-20 text-center text-gray-500">Fahrzeug nicht gefunden.</div>;
+  if (!data) return <div className="page-wrap py-20 text-center text-gray-500">Lade…</div>;
 
   const { vehicle: v, dealer, inquiries } = data;
   const images = v.images || [];
 
   return (
-    <div className="container-x py-10">
+    <div className="page-wrap py-10">
       <button onClick={() => nav("/admin")} data-testid="back-to-admin" className="inline-flex items-center gap-2 text-xs text-gray-500 hover:text-[#16A34A] mb-6">
         <ArrowLeft className="w-3.5 h-3.5" /> Admin-Übersicht
       </button>

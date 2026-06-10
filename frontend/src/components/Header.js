@@ -15,7 +15,7 @@ export default function Header() {
 
   return (
     <header className="bg-[var(--card)] border-b border-[var(--hairline)]">
-      <div className="container-x flex items-center justify-between h-[72px]">
+      <div className="page-wrap flex items-center justify-between h-[72px]">
         <Link to="/" data-testid="logo-link" className="block">
           <Logo size="md" />
         </Link>

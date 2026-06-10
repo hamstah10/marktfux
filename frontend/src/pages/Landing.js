@@ -41,7 +41,7 @@ export default function Landing() {
     <div>
       {/* ============== HERO ============== */}
       <section style={{ background: "var(--gradient-hero)" }} className="border-b border-[var(--hairline)]">
-        <div className="max-w-[980px] mx-auto px-6 pt-16 md:pt-20 pb-12 md:pb-16 text-center">
+        <div className="page-wrap max-w-[980px] pt-16 md:pt-20 pb-12 md:pb-16 text-center">
           <motion.span
             initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, ease }}
             className="inline-flex items-center gap-1.5 font-mono text-xs font-semibold text-[var(--green)] bg-[var(--green-subtle)] border border-[var(--green-border)] px-3.5 py-1.5 rounded-full tracking-[0.04em]"
@@ -116,7 +116,7 @@ export default function Landing() {
       </section>
 
       {/* ============== FEATURED ============== */}
-      <section className="max-w-[1240px] mx-auto px-6 pt-14">
+      <section className="page-wrap pt-14">
         <Reveal>
           <div className="flex justify-between items-end mb-6">
             <div>
@@ -146,7 +146,7 @@ export default function Landing() {
       </section>
 
       {/* ============== CATEGORIES ============== */}
-      <section className="max-w-[1240px] mx-auto px-6 pt-14">
+      <section className="page-wrap pt-14">
         <Reveal>
           <h2 className="font-display font-bold text-[28px] text-[var(--fg1)] tracking-[-0.02em] mb-6">Nach Fahrzeugtyp</h2>
         </Reveal>
@@ -174,7 +174,7 @@ export default function Landing() {
       </section>
 
       {/* ============== SELL CTA ============== */}
-      <section className="max-w-[1240px] mx-auto px-6 pt-14">
+      <section className="page-wrap pt-14">
         <Reveal>
           <div className="text-center mb-7">
             <h2 className="font-display font-bold text-[28px] text-[var(--fg1)] tracking-[-0.02em]">Du willst verkaufen?</h2>
@@ -213,7 +213,7 @@ export default function Landing() {
 
       {/* ============== HOW IT WORKS ============== */}
       <section className="bg-[var(--card)] border-t border-[var(--hairline)] border-b mt-14">
-        <div className="max-w-[1100px] mx-auto px-6 py-14">
+        <div className="page-wrap max-w-[1100px] py-14">
           <div className="text-center mb-10">
             <span className="font-mono text-xs font-semibold text-[var(--green)] tracking-[0.1em] uppercase">So funktioniert's</span>
             <h2 className="font-display font-bold text-[30px] text-[var(--fg1)] tracking-[-0.02em] mt-2.5">In drei Schritten zum Auto</h2>

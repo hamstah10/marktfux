@@ -59,8 +59,8 @@ export default function DealerProfile() {
     } finally { setSubmitting(false); }
   };
 
-  if (dealer === false) return <div className="container-x py-20 text-center text-gray-500" data-testid="dealer-not-found">Händler nicht gefunden.</div>;
-  if (!dealer) return <div className="container-x py-20 text-center text-gray-500">Lade…</div>;
+  if (dealer === false) return <div className="page-wrap py-20 text-center text-gray-500" data-testid="dealer-not-found">Händler nicht gefunden.</div>;
+  if (!dealer) return <div className="page-wrap py-20 text-center text-gray-500">Lade…</div>;
 
   const memberSince = dealer.created_at ? new Date(dealer.created_at).getFullYear() : "—";
 
@@ -68,7 +68,7 @@ export default function DealerProfile() {
     <div>
       {/* Hero */}
       <section className="bg-[#0A0A0A] text-white">
-        <div className="container-x py-16">
+        <div className="page-wrap py-16">
           <Link to="/fahrzeuge" className="inline-flex items-center gap-2 text-xs text-gray-400 hover:text-white mb-6">
             <ArrowLeft className="w-3.5 h-3.5" /> Marktplatz
           </Link>
@@ -99,7 +99,7 @@ export default function DealerProfile() {
       </section>
 
       {/* Vehicles */}
-      <section className="container-x py-16">
+      <section className="page-wrap py-16">
         <div className="flex items-end justify-between mb-8">
           <div>
             <div className="swiss-label text-[#16A34A]">Fahrzeuge</div>
@@ -117,7 +117,7 @@ export default function DealerProfile() {
 
       {/* Reviews */}
       <section className="bg-gray-50 border-t border-gray-200">
-        <div className="container-x py-16">
+        <div className="page-wrap py-16">
           <div className="flex items-end justify-between mb-8">
             <div>
               <div className="swiss-label text-[#16A34A]">Bewertungen</div>

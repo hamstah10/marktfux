@@ -35,7 +35,7 @@ export default function AdminPanel() {
   const dealerList = filter === "" ? dealers : dealers.filter(d => d.status === filter);
 
   return (
-    <div className="container-x py-10">
+    <div className="page-wrap py-10">
       <div className="swiss-label text-[#16A34A]">Admin-Panel</div>
       <h1 className="font-display text-3xl font-bold tracking-tight mt-2">Plattform-Verwaltung</h1>
 

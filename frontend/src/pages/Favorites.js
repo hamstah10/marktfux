@@ -27,7 +27,7 @@ export default function Favorites() {
   }, [favorites.join(",")]);
 
   return (
-    <div className="container-x py-10">
+    <div className="page-wrap py-10">
       <div className="flex items-end justify-between mb-8">
         <div>
           <div className="swiss-label text-[#16A34A] flex items-center gap-2"><Heart className="w-3.5 h-3.5" fill="currentColor" /> Merkliste</div>

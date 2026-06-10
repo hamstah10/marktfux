@@ -122,7 +122,10 @@ h1, h2, h3, h4, h5, h6, .font-display {
 }
 
 @layer components {
+    /* Full-width section padding only (use when bg should extend) */
     .container-x { @apply px-5 md:px-8 lg:px-12; }
+    /* Centered content wrapper — same max-width across the entire app */
+    .page-wrap { @apply max-w-[1240px] mx-auto px-5 md:px-8 lg:px-12; }
 
     /* Buttons */
     .btn {

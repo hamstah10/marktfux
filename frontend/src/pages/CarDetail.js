@@ -39,13 +39,13 @@ export default function CarDetail() {
     }
   };
 
-  if (v === false) return <div className="container-x py-20 text-center text-gray-500" data-testid="vehicle-not-found">Fahrzeug nicht gefunden.</div>;
-  if (!v) return <div className="container-x py-20 text-center text-gray-500">Lade…</div>;
+  if (v === false) return <div className="page-wrap py-20 text-center text-gray-500" data-testid="vehicle-not-found">Fahrzeug nicht gefunden.</div>;
+  if (!v) return <div className="page-wrap py-20 text-center text-gray-500">Lade…</div>;
 
   const images = v.images?.length ? v.images : [];
 
   return (
-    <div className="container-x py-8">
+    <div className="page-wrap py-8">
       <Link to="/fahrzeuge" className="inline-flex items-center gap-2 text-sm text-gray-600 hover:text-[#16A34A] mb-6">
         <ArrowLeft className="w-4 h-4" /> Zurück zur Übersicht
       </Link>

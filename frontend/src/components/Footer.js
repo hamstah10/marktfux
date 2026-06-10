@@ -4,7 +4,7 @@ import Logo from "./Logo";
 export default function Footer() {
   return (
     <footer className="bg-[var(--card)] border-t border-[var(--hairline)] mt-20">
-      <div className="container-x py-14 grid grid-cols-1 md:grid-cols-4 gap-10">
+      <div className="page-wrap py-14 grid grid-cols-1 md:grid-cols-4 gap-10">
         <div>
           <Logo size="md" />
           <p className="text-sm text-[var(--fg2)] mt-4 leading-relaxed max-w-xs">Vertrauensvoller Marktplatz für Gebrauchtwagen — von Privat und vom Händler.</p>
