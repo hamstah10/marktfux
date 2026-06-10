@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { api, formatApiError } from "@/lib/api";
 import { toast } from "sonner";
-import { CheckCircle2, XCircle, Ban, Power } from "lucide-react";
+import { CheckCircle2, XCircle, Ban, Power, ChevronRight } from "lucide-react";
 
 export default function AdminPanel() {
   const [tab, setTab] = useState("dealers");
@@ -81,18 +82,21 @@ export default function AdminPanel() {
               </thead>
               <tbody>
                 {dealerList.map(d => (
-                  <tr key={d.id} className="border-b border-gray-100">
+                  <tr key={d.id} className="border-b border-gray-100 hover:bg-gray-50">
                     <td className="p-4">
-                      <div className="font-semibold">{d.company || d.name}</div>
-                      <div className="text-xs text-gray-500">{d.name}</div>
+                      <Link to={`/admin/haendler/${d.id}`} data-testid={`dealer-row-${d.id}`} className="group block">
+                        <div className="font-semibold group-hover:text-[#E63946] transition-colors">{d.company || d.name}</div>
+                        <div className="text-xs text-gray-500">{d.name}</div>
+                      </Link>
                     </td>
                     <td className="p-4 text-gray-600">{d.email}</td>
                     <td className="p-4"><StatusBadge status={d.status} /></td>
                     <td className="p-4 text-right">
-                      <div className="inline-flex gap-1">
+                      <div className="inline-flex gap-1 items-center">
                         {d.status !== "approved" && <IconBtn testid={`approve-${d.id}`} onClick={() => setDealerStatus(d.id, "approved")} icon={CheckCircle2} color="text-green-600" title="Freigeben" />}
                         {d.status !== "rejected" && <IconBtn testid={`reject-${d.id}`} onClick={() => setDealerStatus(d.id, "rejected")} icon={XCircle} color="text-red-600" title="Ablehnen" />}
                         {d.status === "approved" && <IconBtn testid={`suspend-${d.id}`} onClick={() => setDealerStatus(d.id, "suspended")} icon={Ban} color="text-orange-600" title="Sperren" />}
+                        <Link to={`/admin/haendler/${d.id}`} className="p-2 text-gray-400 hover:text-[#E63946]" title="Details"><ChevronRight className="w-4 h-4" /></Link>
                       </div>
                     </td>
                   </tr>
@@ -118,20 +122,23 @@ export default function AdminPanel() {
               </thead>
               <tbody>
                 {vehicles.map(v => (
-                  <tr key={v.id} className="border-b border-gray-100">
+                  <tr key={v.id} className="border-b border-gray-100 hover:bg-gray-50">
                     <td className="p-4">
-                      <div className="font-semibold">{v.title}</div>
-                      <div className="text-xs text-gray-500">{v.brand} {v.model} · {v.year}</div>
+                      <Link to={`/admin/fahrzeug/${v.id}`} data-testid={`vehicle-row-${v.id}`} className="group block">
+                        <div className="font-semibold group-hover:text-[#E63946] transition-colors">{v.title}</div>
+                        <div className="text-xs text-gray-500">{v.brand} {v.model} · {v.year}</div>
+                      </Link>
                     </td>
                     <td className="p-4 text-gray-600">{v.dealer_name}</td>
                     <td className="p-4"><StatusBadge status={v.status} /></td>
                     <td className="p-4 text-right">
-                      <div className="inline-flex gap-1">
+                      <div className="inline-flex gap-1 items-center">
                         {v.status !== "published" ? (
                           <IconBtn testid={`publish-${v.id}`} onClick={() => setVehicleStatus(v.id, "published")} icon={Power} color="text-green-600" title="Aktivieren" />
                         ) : (
                           <IconBtn testid={`deactivate-${v.id}`} onClick={() => setVehicleStatus(v.id, "deactivated")} icon={Ban} color="text-orange-600" title="Deaktivieren" />
                         )}
+                        <Link to={`/admin/fahrzeug/${v.id}`} className="p-2 text-gray-400 hover:text-[#E63946]" title="Details"><ChevronRight className="w-4 h-4" /></Link>
                       </div>
                     </td>
                   </tr>

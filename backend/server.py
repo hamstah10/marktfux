@@ -660,6 +660,40 @@ async def admin_dealers(status: Optional[str] = None, _: dict = Depends(require_
     cursor = db.users.find(q, {"_id": 0, "password_hash": 0}).sort("created_at", -1)
     return {"items": await cursor.to_list(length=500)}
 
+@api.get("/admin/dealers/{dealer_id}")
+async def admin_dealer_detail(dealer_id: str, _: dict = Depends(require_admin)):
+    d = await db.users.find_one({"id": dealer_id, "role": "dealer"}, {"_id": 0, "password_hash": 0})
+    if not d:
+        raise HTTPException(status_code=404, detail="Händler nicht gefunden")
+    vehicles = await db.vehicles.find({"dealer_id": dealer_id}, {"_id": 0}).sort("created_at", -1).to_list(length=500)
+    inquiries_total = await db.inquiries.count_documents({"dealer_id": dealer_id})
+    inquiries_unread = await db.inquiries.count_documents({"dealer_id": dealer_id, "read": False})
+    reviews = await db.reviews.find({"dealer_id": dealer_id}, {"_id": 0}).sort("created_at", -1).to_list(length=200)
+    rating = await _dealer_rating(dealer_id)
+    total_views = sum(int(v.get("views") or 0) for v in vehicles)
+    return {
+        "dealer": d,
+        "stats": {
+            "vehicles_total": len(vehicles),
+            "vehicles_published": sum(1 for v in vehicles if v.get("status") == "published"),
+            "vehicles_deactivated": sum(1 for v in vehicles if v.get("status") == "deactivated"),
+            "inquiries_total": inquiries_total,
+            "inquiries_unread": inquiries_unread,
+            "rating_avg": rating["avg"],
+            "rating_count": rating["count"],
+            "total_views": total_views,
+        },
+        "vehicles": vehicles,
+        "reviews": reviews,
+    }
+
+@api.delete("/admin/reviews/{review_id}")
+async def admin_delete_review(review_id: str, _: dict = Depends(require_admin)):
+    r = await db.reviews.delete_one({"id": review_id})
+    if r.deleted_count == 0:
+        raise HTTPException(status_code=404, detail="Bewertung nicht gefunden")
+    return {"ok": True}
+
 @api.patch("/admin/dealers/{dealer_id}/status")
 async def admin_set_dealer_status(dealer_id: str, body: dict, _: dict = Depends(require_admin)):
     new_status = body.get('status')
@@ -680,6 +714,17 @@ async def admin_vehicles(status: Optional[str] = None, _: dict = Depends(require
         q['status'] = status
     cursor = db.vehicles.find(q, {"_id": 0}).sort("created_at", -1)
     return {"items": await cursor.to_list(length=1000)}
+
+@api.get("/admin/vehicles/{vehicle_id}")
+async def admin_vehicle_detail(vehicle_id: str, _: dict = Depends(require_admin)):
+    v = await db.vehicles.find_one({"id": vehicle_id}, {"_id": 0})
+    if not v:
+        raise HTTPException(status_code=404, detail="Fahrzeug nicht gefunden")
+    dealer = None
+    if v.get("dealer_id"):
+        dealer = await db.users.find_one({"id": v["dealer_id"]}, {"_id": 0, "password_hash": 0})
+    inquiries = await db.inquiries.find({"vehicle_id": vehicle_id}, {"_id": 0}).sort("created_at", -1).to_list(length=500)
+    return {"vehicle": v, "dealer": dealer, "inquiries": inquiries}
 
 @api.patch("/admin/vehicles/{vehicle_id}/status")
 async def admin_set_vehicle_status(vehicle_id: str, body: dict, _: dict = Depends(require_admin)):

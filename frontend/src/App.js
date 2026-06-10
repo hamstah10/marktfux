@@ -19,6 +19,8 @@ import DealerInquiries from "@/pages/DealerInquiries";
 import DealerStats from "@/pages/DealerStats";
 import CarForm from "@/pages/CarForm";
 import AdminPanel from "@/pages/AdminPanel";
+import AdminDealerDetail from "@/pages/AdminDealerDetail";
+import AdminVehicleDetail from "@/pages/AdminVehicleDetail";
 import Favorites from "@/pages/Favorites";
 import Compare from "@/pages/Compare";
 import DealerProfile from "@/pages/DealerProfile";
@@ -46,6 +48,8 @@ function AnimatedRoutes() {
         </Route>
 
         <Route path="/admin" element={<ProtectedRoute role="admin"><Layout><PageTransition><AdminPanel /></PageTransition></Layout></ProtectedRoute>} />
+        <Route path="/admin/haendler/:id" element={<ProtectedRoute role="admin"><Layout><PageTransition><AdminDealerDetail /></PageTransition></Layout></ProtectedRoute>} />
+        <Route path="/admin/fahrzeug/:id" element={<ProtectedRoute role="admin"><Layout><PageTransition><AdminVehicleDetail /></PageTransition></Layout></ProtectedRoute>} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </AnimatePresence>
