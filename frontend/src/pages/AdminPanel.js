@@ -70,7 +70,7 @@ export default function AdminPanel() {
               </button>
             ))}
           </div>
-          <div className="swiss-card overflow-hidden">
+          <div className="swiss-card overflow-x-auto">
             <table className="w-full text-sm" data-testid="admin-dealers-table">
               <thead className="bg-gray-50 border-b border-gray-200">
                 <tr>
@@ -110,7 +110,7 @@ export default function AdminPanel() {
 
       {tab === "vehicles" && (
         <div className="mt-8">
-          <div className="swiss-card overflow-hidden">
+          <div className="swiss-card overflow-x-auto">
             <table className="w-full text-sm" data-testid="admin-vehicles-table">
               <thead className="bg-gray-50 border-b border-gray-200">
                 <tr>

@@ -4,7 +4,7 @@ import { api } from "@/lib/api";
 import CarCard from "@/components/CarCard";
 import { StaggerItem } from "@/components/Motion";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { SlidersHorizontal, Search, ChevronLeft, ChevronRight } from "lucide-react";
+import { SlidersHorizontal, Search, ChevronLeft, ChevronRight, X } from "lucide-react";
 
 const PAGE_SIZE = 12;
 const SORTS = [
@@ -69,6 +69,15 @@ export default function Marketplace() {
   const showingFrom = total === 0 ? 0 : (page - 1) * PAGE_SIZE + 1;
   const showingTo = Math.min(page * PAGE_SIZE, total);
 
+  // Active filter count for mobile button
+  const activeCount = Object.entries(filters).filter(([k, v]) => v !== "" && v !== null && k !== "sort" && k !== "search").length;
+  const [drawerOpen, setDrawerOpen] = useState(false);
+  useEffect(() => {
+    if (drawerOpen) document.body.style.overflow = "hidden";
+    else document.body.style.overflow = "";
+    return () => { document.body.style.overflow = ""; };
+  }, [drawerOpen]);
+
   return (
     <div className="page-wrap py-10">
       <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-8">
@@ -103,9 +112,9 @@ export default function Marketplace() {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-[280px_1fr] gap-8">
-        {/* Sidebar */}
-        <aside className="space-y-6">
+      <div className="grid grid-cols-1 lg:grid-cols-[280px_1fr] gap-6 md:gap-8">
+        {/* Sidebar (desktop) */}
+        <aside className="hidden lg:block space-y-6">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2 swiss-label">
               <SlidersHorizontal className="w-4 h-4" /> Filter
@@ -197,6 +206,70 @@ export default function Marketplace() {
           )}
         </section>
       </div>
+
+      {/* Mobile Filter Drawer */}
+      {drawerOpen && (
+        <div className="lg:hidden fixed inset-0 z-50 flex" data-testid="mobile-filter-drawer">
+          <div className="absolute inset-0 bg-black/40" onClick={() => setDrawerOpen(false)} />
+          <div className="ml-auto bg-white w-[88vw] max-w-[380px] h-full overflow-y-auto thin-scroll relative shadow-2xl">
+            <div className="sticky top-0 bg-white border-b border-[var(--hairline)] px-5 py-4 flex items-center justify-between">
+              <div className="flex items-center gap-2 swiss-label"><SlidersHorizontal className="w-4 h-4" /> Filter</div>
+              <button onClick={() => setDrawerOpen(false)} data-testid="mobile-filter-close" className="p-1.5 hover:bg-[var(--muted-fill)]" aria-label="Filter schließen"><X className="w-5 h-5" /></button>
+            </div>
+            <div className="p-5 space-y-6">
+              <FilterBlock label="Marke">
+                <Select value={filters.brand || ALL} onValueChange={(v) => upd("brand", v === ALL ? "" : v)}>
+                  <SelectTrigger className="border-gray-200 h-11 text-sm"><SelectValue placeholder="Alle Marken" /></SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value={ALL}>Alle Marken</SelectItem>
+                    {facets.brands.map(b => <SelectItem key={b.name} value={b.name}>{b.name} ({b.count})</SelectItem>)}
+                  </SelectContent>
+                </Select>
+              </FilterBlock>
+              <FilterBlock label="Preis €">
+                <div className="grid grid-cols-2 gap-2">
+                  <input value={filters.min_price} onChange={(e) => upd("min_price", e.target.value)} type="number" placeholder="Von" className={numInp} />
+                  <input value={filters.max_price} onChange={(e) => upd("max_price", e.target.value)} type="number" placeholder="Bis" className={numInp} />
+                </div>
+              </FilterBlock>
+              <FilterBlock label="Baujahr">
+                <div className="grid grid-cols-2 gap-2">
+                  <input value={filters.min_year} onChange={(e) => upd("min_year", e.target.value)} type="number" placeholder="Von" className={numInp} />
+                  <input value={filters.max_year} onChange={(e) => upd("max_year", e.target.value)} type="number" placeholder="Bis" className={numInp} />
+                </div>
+              </FilterBlock>
+              <FilterBlock label="Max. Kilometer">
+                <input value={filters.max_mileage} onChange={(e) => upd("max_mileage", e.target.value)} type="number" placeholder="z.B. 100000" className={numInp + " w-full"} />
+              </FilterBlock>
+              <FilterBlock label="Kraftstoff">
+                <Select value={filters.fuel || ALL} onValueChange={(v) => upd("fuel", v === ALL ? "" : v)}>
+                  <SelectTrigger className="border-gray-200 h-11 text-sm"><SelectValue placeholder="Alle" /></SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value={ALL}>Alle</SelectItem>
+                    {facets.fuels.map(f => <SelectItem key={f} value={f}>{f}</SelectItem>)}
+                  </SelectContent>
+                </Select>
+              </FilterBlock>
+              <FilterBlock label="Getriebe">
+                <Select value={filters.transmission || ALL} onValueChange={(v) => upd("transmission", v === ALL ? "" : v)}>
+                  <SelectTrigger className="border-gray-200 h-11 text-sm"><SelectValue placeholder="Alle" /></SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value={ALL}>Alle</SelectItem>
+                    {facets.transmissions.map(t => <SelectItem key={t} value={t}>{t}</SelectItem>)}
+                  </SelectContent>
+                </Select>
+              </FilterBlock>
+              <FilterBlock label="Standort">
+                <input value={filters.location} onChange={(e) => upd("location", e.target.value)} placeholder="Stadt..." className={numInp + " w-full"} />
+              </FilterBlock>
+            </div>
+            <div className="sticky bottom-0 bg-white border-t border-[var(--hairline)] p-4 flex gap-3">
+              <button onClick={() => { reset(); }} className="btn btn-outline flex-1">Reset</button>
+              <button onClick={() => setDrawerOpen(false)} className="btn btn-primary flex-1" data-testid="mobile-filter-apply">{total} Treffer zeigen</button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

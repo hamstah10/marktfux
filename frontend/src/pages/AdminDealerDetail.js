@@ -112,7 +112,7 @@ export default function AdminDealerDetail() {
         {vehicles.length === 0 ? (
           <div className="swiss-card p-8 text-center text-gray-500 text-sm">Noch keine Inserate.</div>
         ) : (
-          <div className="swiss-card overflow-hidden">
+          <div className="swiss-card overflow-x-auto">
             <table className="w-full text-sm" data-testid="dd-vehicles-table">
               <thead className="bg-gray-50 border-b border-gray-200">
                 <tr>
